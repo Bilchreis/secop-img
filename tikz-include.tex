@@ -1,0 +1,76 @@
+
+
+
+\usetikzlibrary{%
+	arrows,%
+	calc,
+	shapes,
+	arrows,
+	shapes.misc,% wg. rounded rectangle
+	shapes.arrows,%
+	chains,%
+	matrix,%
+	positioning,% wg. " of "
+	scopes,%
+	decorations,% /pgf/decoration/random steps | erste Graphik
+	shadows,%
+	3d,%
+	patterns,%
+	patterns.meta,%
+	automata,%
+	backgrounds,%
+	intersections,%
+	tikzmark,%
+	positioning,%
+	angles,%
+	quotes,%
+	calc
+}
+
+
+\tikzset{% UML2 Activity Diagram Styles
+	caption/.style    = {node distance=1em},
+	process/.style    = {fill=black!5,draw, thick, rounded corners=0.8em, minimum height = 3em,
+		minimum width = 5em, align=center, inner sep=1em,node distance=1em},
+	object/.style    = {fill=black!5,draw, thick, rectangle, minimum height = 3em,
+		minimum width = 3em, align=center, inner sep=1em,node distance=1em},
+	pin/.style    = {fill=black!5,draw, thick, rectangle, minimum height = 0.6em,
+		minimum width = 0.6em, node distance=-1pt, inner sep=0,font=\relsize{-3.5}},
+	start/.style      = {fill=black,draw,circle,node distance=1em}, 
+	group/.style      = {color=black,thin,rounded corners=0.8em, rectangle,fill = black!5}, 
+	groupCaption/.style      = {above=0.2cm,right=0.2cm, fill = white,draw = black}, 
+	input/.style    = {coordinate,node distance=1.5em}, 
+	output/.style   = {coordinate,node distance=1.5em}, 
+	between/.style args={#1 and #2}{ % http://tex.stackexchange.com/a/138828/15602
+		at = ($(#1)!0.5!(#2)$)
+	},
+	notefield/.style    = {fill=green!5,draw, thick, minimum height = 3em,
+		minimum width = 3em, align=left, inner sep=0.5em,node distance=3em,,text width=4cm},
+	loop/.style = { rounded corners=0.8em,dashed,rectangle split, rectangle split,
+		rectangle split parts=3, very thick,draw=black,  align=center,minimum height = 4cm,rectangle split part align={center, left, left}},
+	fitting node/.style={
+		inner sep=0pt,
+		fill=none,
+		draw=none,
+		reset transform,
+		fit={(\pgf@pathminx,\pgf@pathminy) (\pgf@pathmaxx,\pgf@pathmaxy)}
+	},
+	reset transform/.code={\pgftransformreset}
+	
+}
+
+
+\definecolor{devicecol}{HTML}{fc8d59}
+\definecolor{signalcol}{HTML}{91bfdb}
+\definecolor{signalxcol}{HTML}{ffffbf}
+
+\def\devcol{devicecol!60}
+\def\sigcol{signalcol!60}
+\def\sigxcol{signalxcol!60}
+
+
+
+\newcommand{\makeGroup}[6]{
+	\draw [group,fill= #6](#2-0.5,#3+1.5-#5)rectangle(#2+#4+0.5,#3+1.5);
+	\node at (#2,#3+1.5) [groupCaption] {\textsc{#1}};
+}
