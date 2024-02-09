@@ -1,0 +1,66 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{color,xcolor}
+
+\usepackage[utf8]{inputenc} 
+
+\input{../praeambel}
+
+
+
+\begin{document}
+	
+	
+	
+\footnotesize
+	\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
+	
+	\makeGroup{local bluesky environment}{-9.4}{-0.1}{10.7}{4.6} {blue!5}
+	\makeGroup{secop-ophyd}{-5}{-0.5}{6.2}{3.8}{yellow!5}
+	\makeGroup{mobile se equipment}{2.4}{-0.1}{3}{6.4}{green!5}
+	
+	\draw 
+	
+	
+	node at (0,0) [object] (client) {\texttt{SECoP-client}\\(frappy)}
+	node [object,right = of client,xshift = 2cm] (server) {\texttt{Sec} \texttt{Node}}
+	node [object,below= of server,yshift = -0.6cm,xshift = 0.4cm,opacity= 0.2,text opacity = 0](instrument2){blabla}
+node [object,below= of server,yshift = -0.8cm,xshift = 0.2cm,opacity=0.6,minimum width = 1.7cm](instrument2){\texttt{Hardware}\\\texttt{Component}}
+node [object,below= of server,yshift = -1cm](instrument){\includegraphics[width =1.8cm ]{../img/Hum_cell.png}}
+	
+	
+	node [object,left= of client,xshift = -1cm] (ophyd){\texttt{Sec Node}\\\texttt{Ophyd.v2}}
+	
+	node [object,below= of ophyd,xshift = 0.4cm,yshift= -0.3cm,opacity= 0.2,text opacity = 0] (module2){\texttt{module:a}\\\texttt{Ophyd.v2}}
+	node [object,below= of ophyd,xshift = 0.2cm,yshift= -0.5cm,opacity=0.6] (module2){\texttt{module:a}\\\texttt{Ophyd.v2}}
+	node [object,below= of ophyd,xshift =  0cm,yshift = -0.7cm] (module1){\texttt{module:a}\\\texttt{Ophyd.v2}}
+	
+	
+	
+	node [object,left= of ophyd,xshift = -3cm] (bluesky){\texttt{Bluesky}\\\texttt{run engine}} 
+	
+	node [object,below = of bluesky,yshift = -0.6cm,xshift = 0.4cm,text opacity = 0,opacity=.2](epics) {\texttt{EPICS-Ophyd}\\\texttt{device}}
+	node [object,below = of bluesky,yshift = -0.8cm,xshift = 0.2cm,text opacity = 0,opacity=.2](epics) {\texttt{EPICS-Ophyd}\\\texttt{device}}
+	node [object,below = of bluesky,yshift = -1cm,opacity=.6](epics) {\texttt{EPICS-Ophyd}\\\texttt{device}}
+	
+	;
+	\draw[<->] (client) -- (server)  node[midway,above,xshift =0.1cm] {\textbf{SECoP}} ;
+	\draw[<->] (client) -- (server)  node[midway,below,xshift =0.1cm] {\textit{TCP}} ;
+	\draw[<->] (client) -- (ophyd);
+	\draw[<->] (ophyd) -- (bluesky)	node[midway,above, align=center,xshift = -0.2cm] {Bluesky};
+	\draw[<->] (ophyd) -- (bluesky)	node[midway,below, align=center,xshift = -0.2cm] {Interface};
+	
+	\draw [<->](bluesky)-- (module1);
+	
+	
+	\draw [-] (ophyd) -- (module1);
+	
+	
+	\draw[<->] (module1) -| (client);
+	
+	\draw[<->,draw = black!30] (bluesky)--(epics);
+	\draw[<->] (instrument) -- (server);
+\end{tikzpicture}
+	
+	
+	
+\end{document}

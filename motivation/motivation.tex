@@ -25,8 +25,8 @@
 
 	
 	\begin{tikzpicture}[auto, line width=2pt, node distance=2cm, >=triangle 45,scale=1.7, every node/.style={scale=1.3},font = \large]
-		\draw [rounded corners=15pt,fill = black!4](-4.9,-13.8) rectangle (17.2,1.3);
-		\makeGroup{\larger Experimental Control Systems}{5.5}{-3.1}{11}{11.8} {blue!5}
+		\draw [rounded corners=15pt,fill = black!4](-4.9,-12.6) rectangle (17.0,1.3);
+		\makeGroup{\larger Experimental Control Systems}{5.5}{-3.1}{10.5}{10.5} {blue!5}
 		\draw
 		
 		
@@ -44,34 +44,33 @@
 		
 		node [objectecs,right = of see,yshift = -4cm,xshift = 0.2cm](blueskyhzb){\includegraphics[height=1.5cm]{../img/bluesky-logo-dark.eps}}
 		node [objectecs,below = of blueskyhzb.west,anchor=west](tangodesy){\includegraphics[height=1.5cm]{../img/1200px-TANGO_controls_logo.png}}
-		node [objectecs,below = of tangodesy.west,anchor=west](nicospsi){\includegraphics[height=1.5cm]{../img/nicos-text.eps}}
-		node [objectecs,below = of nicospsi.west,anchor=west](nicosess){\includegraphics[height=1.5cm]{../img/nicos-text.eps}}
-		node [objectecs,below = of nicosess.west,anchor=west](nicosjülich){\includegraphics[height=1.5cm]{../img/nicos-text.eps}}
+
+
 		%node [objectecs,below = of nicosjülich.west,anchor=west](blueskydotdot){\includegraphics[height=1.5cm]{poster/bluesky-logo-dark.eps}}
 		
 		
 		node [object, left = of blueskyhzb](sohzb){\Large SECoP-Ophyd}
 		%node [object, left = of blueskydotdot](sodotdot){\textbf{SECoP-Ophyd}}
 		node [object, left = of tangodesy](stdesy){\Large SECoP-Tango}
-		
-		node [object, left = of nicospsi](snpsi){\Large native\\\Large Integration}
-		node [object, left = of nicosess](sness){\Large native}
-		node [object, left = of nicosjülich](snj){\Large native}
+
+
 		
 		node [objectinst,right = of blueskyhzb,anchor=west,xshift = -2.8cm](hzb){\includegraphics[height=1.5cm]{../img/HZB_Logo_A4_RGB.jpg}}
 		node [objectinst,below = of hzb.west,anchor=west](desy){\includegraphics[height=1.5cm]{../img/desy_logo_3c_web.eps}}
-		node [objectinst,below = of desy.west,anchor=west](psi){\includegraphics[height=1.5cm]{../img/psi.eps}}
-		node [objectinst,below = of psi.west,anchor=west](ess){\includegraphics[height=1.5cm]{../img/ess.png}}
-		node [objectinst,below = of ess.west,anchor=west](jülich){\includegraphics[height=1.5cm]{../img/Jülich.jpg}}
 		
+		node [objectinst,below = of desy.west,anchor=west,yshift= -0.5cm](psi){\includegraphics[height=1.5cm]{../img/psi.eps}}
+		node [objectinst,below = of psi.west,anchor=west,yshift = 0.95cm,xshift = -0.4cm](ess){\includegraphics[height=1.5cm]{../img/ess.png}}
+		node [objectinst,below = of ess.west,anchor=west,yshift = 0.95cm,xshift = -0.4cm](jülich){\includegraphics[height=1.5cm]{../img/Jülich.jpg}}
 		
+		node [objectecs,left = of ess.west,anchor=west,xshift = -3.5cm ](nicospsi){\includegraphics[height=1.5cm]{../img/nicos-text.eps}}
+		
+		node [object, left = of nicospsi](snpsi){\Large native\\\Large Integration}
 
 		;
 		
 
 	\draw[instarr] (see.south) to  [in = 180,out = 270]  (snpsi.west);
-	\draw[instarr] (see.south) to  [in = 180,out = 270]  (sness.west);
-	\draw[instarr] (see.south) to  [in = 180,out = 270]  (snj.west);	
+
 
 	\draw[instarr] (see.south) to  [in = 180,out = 270] (stdesy.west);
 	%\draw[instarr] (see.south) to  [in = 180,out = 270]  (sodotdot.west);	
@@ -80,8 +79,7 @@
 	\draw[instarr,-] (sohzb) -- (blueskyhzb);
 	\draw[instarr,-] (stdesy) -- (tangodesy);
 	\draw[instarr,-] (snpsi) -- (nicospsi);
-	\draw[instarr,-] (sness) -- (nicosess);
-	\draw[instarr,-] (snj) -- (nicosjülich);
+
 
 
 	\draw

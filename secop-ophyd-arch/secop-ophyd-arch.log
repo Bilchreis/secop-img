@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.14)  9 FEB 2024 09:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.12.14)  9 FEB 2024 10:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**motivation.tex
-(./motivation.tex
+**secop-ophyd-arch.tex
+(./secop-ophyd-arch.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21>
 (/usr/share/texlive/texmf-dist/tex/latex/standalone/standalone.cls
@@ -56,18 +56,8 @@ File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \bibindent=\dimen138
 )
 \sa@box=\box50
-runsystem(pdflatex  -shell-escape  -jobname 'motivation' '\expandafter\def\csna
-me sa@internal@run\endcsname{1}\input{motivation}')...disabled (restricted).
-
-\sa@read=\read2
-runsystem(pdf2svg motivation.pdf motivation.svg)...disabled (restricted).
-
-
-
-Class standalone Warning: Conversion failed! Please ensure that shell escape
-(standalone)              is enabled (e.g. use '-shell-escape').
-
-) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -501,7 +491,7 @@ ex
 \pgf@xd=\dimen160
 \pgf@yd=\dimen161
 \w@pgf@writea=\write3
-\r@pgf@reada=\read3
+\r@pgf@reada=\read2
 \c@pgf@counta=\count278
 \c@pgf@countb=\count279
 \c@pgf@countc=\count280
@@ -681,7 +671,7 @@ Package: pgfcomp-version-1-18 2021/05/15 v3.1.9a (3.1.9a)
 Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks35
 \verbatim@line=\toks36
-\verbatim@in@stream=\read4
+\verbatim@in@stream=\read3
 )
 (/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
@@ -1566,7 +1556,7 @@ Package: inlinedef 2008/07/10 v1.0 Inlined expansions within definitions
 \forest@segment@toks=\toks61
 \forest@PIi@toks=\toks62
 \forest@PIii@toks=\toks63
-\forest@copy@in=\read5
+\forest@copy@in=\read4
 \forest@copy@out=\write4
 \forest@externalize@max@outer@n=\count423
 \forest@externalize@inner@n=\count424
@@ -1619,51 +1609,53 @@ sitions in a document
 \l__sn_ya_dim=\dimen326
 )))
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 22.
-LaTeX Font Info:    Trying to load font information for T1+jkp on input line 22
+h' as default language. on input line 10.
+LaTeX Font Info:    Trying to load font information for T1+jkp on input line 10
 .
  (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/t1jkp.fd
 File: t1jkp.fd 2007/01/24 Fontinst v1.928 font definitions for T1/jkp.
-) (./motivation.aux)
-\openout1 = `motivation.aux'.
+)
+(./secop-ophyd-arch.aux)
+\openout1 = `secop-ophyd-arch.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 22.
-LaTeX Font Info:    Trying to load font information for OML+jkp on input line 2
-2.
- (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omljkp.fd
+LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 10.
+LaTeX Font Info:    Trying to load font information for OML+jkp on input line 1
+0.
+
+(/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omljkp.fd
 File: omljkp.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 22.
-LaTeX Font Info:    Trying to load font information for OMS+jkp on input line 2
-2.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 10.
+LaTeX Font Info:    Trying to load font information for OMS+jkp on input line 1
+0.
 
 (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omsjkp.fd
 File: omsjkp.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 22.
-LaTeX Font Info:    Trying to load font information for OMX+jkp on input line 2
-2.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 10.
+LaTeX Font Info:    Trying to load font information for OMX+jkp on input line 1
+0.
 
 (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/omxjkp.fd
 File: omxjkp.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 22.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 10.
 LaTeX Font Info:    Trying to load font information for U+jkpexa on input line 
-22.
+10.
 
 (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/ujkpexa.fd
 File: ujkpexa.fd 2006/08/15 v1.0
 )
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    ... okay on input line 10.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1690,155 +1682,52 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 22.
+or `english'. on input line 10.
 
 
 Package todonotes Warning: The length marginparwidth is less than 2cm and will 
 most likely cause issues with the appearance of inserted todonotes. The issue c
 an be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to 
-loading the todonotes package. on input line 22.
+loading the todonotes package. on input line 10.
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 22.
+ on input line 10.
 
 LaTeX Font Info:    Trying to load font information for T1+jkptt on input line 
-33.
+24.
 (/usr/share/texlive/texmf-dist/tex/latex/kpfonts/t1jkptt.fd
 File: t1jkptt.fd 2007/01/26 Fontinst v1.928 font definitions for T1/jkptt.
 )
 <../img/Hum_cell.png, id=29, 485.815pt x 670.505pt>
 File: ../img/Hum_cell.png Graphic file (type png)
 <use ../img/Hum_cell.png>
-Package pdftex.def Info: ../img/Hum_cell.png  used on input line 35.
-(pdftex.def)             Requested size: 82.46143pt x 113.81102pt.
-Package epstopdf Info: Source file: <../img/bluesky-logo-dark.eps>
-(epstopdf)                    date: 2024-01-23 13:14:35
-(epstopdf)                    size: 14797 bytes
-(epstopdf)             Output file: <./bluesky-logo-dark-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-01-29 12:00:13
-(epstopdf)                    size: 9206 bytes
-(epstopdf)             Command: <repstopdf --outfile=./bluesky-logo-dark-eps-co
-nverted-to.pdf ../img/bluesky-logo-dark.eps>
-(epstopdf)             \includegraphics on input line 45.
-Package epstopdf Info: Output file is already uptodate.
-<./bluesky-logo-dark-eps-converted-to.pdf, id=31, 194.7275pt x 48.18pt>
-File: ./bluesky-logo-dark-eps-converted-to.pdf Graphic file (type pdf)
-<use ./bluesky-logo-dark-eps-converted-to.pdf>
-Package pdftex.def Info: ./bluesky-logo-dark-eps-converted-to.pdf  used on inpu
-t line 45.
-(pdftex.def)             Requested size: 172.49277pt x 42.67912pt.
-<../img/1200px-TANGO_controls_logo.png, id=32, 2163.08125pt x 648.4225pt>
-File: ../img/1200px-TANGO_controls_logo.png Graphic file (type png)
-<use ../img/1200px-TANGO_controls_logo.png>
-Package pdftex.def Info: ../img/1200px-TANGO_controls_logo.png  used on input l
-ine 46.
-(pdftex.def)             Requested size: 142.35452pt x 42.67912pt.
-<../img/HZB_Logo_A4_RGB.jpg, id=33, 186.39638pt x 65.5248pt>
-File: ../img/HZB_Logo_A4_RGB.jpg Graphic file (type jpg)
-<use ../img/HZB_Logo_A4_RGB.jpg>
-Package pdftex.def Info: ../img/HZB_Logo_A4_RGB.jpg  used on input line 58.
-(pdftex.def)             Requested size: 121.40932pt x 42.67912pt.
-Package epstopdf Info: Source file: <../img/desy_logo_3c_web.eps>
-(epstopdf)                    date: 2024-01-23 13:14:35
-(epstopdf)                    size: 8908 bytes
-(epstopdf)             Output file: <./desy_logo_3c_web-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-01-29 12:00:14
-(epstopdf)                    size: 4542 bytes
-(epstopdf)             Command: <repstopdf --outfile=./desy_logo_3c_web-eps-con
-verted-to.pdf ../img/desy_logo_3c_web.eps>
-(epstopdf)             \includegraphics on input line 59.
-Package epstopdf Info: Output file is already uptodate.
-<./desy_logo_3c_web-eps-converted-to.pdf, id=34, 213.79875pt x 213.79875pt>
-File: ./desy_logo_3c_web-eps-converted-to.pdf Graphic file (type pdf)
-<use ./desy_logo_3c_web-eps-converted-to.pdf>
-Package pdftex.def Info: ./desy_logo_3c_web-eps-converted-to.pdf  used on input
- line 59.
-(pdftex.def)             Requested size: 42.67743pt x 42.67912pt.
-Package epstopdf Info: Source file: <../img/psi.eps>
-(epstopdf)                    date: 2024-01-23 13:14:35
-(epstopdf)                    size: 10382 bytes
-(epstopdf)             Output file: <./psi-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-01-29 12:00:14
-(epstopdf)                    size: 4343 bytes
-(epstopdf)             Command: <repstopdf --outfile=./psi-eps-converted-to.pdf
- ../img/psi.eps>
-(epstopdf)             \includegraphics on input line 61.
-Package epstopdf Info: Output file is already uptodate.
-<./psi-eps-converted-to.pdf, id=35, 292.09125pt x 103.38625pt>
-File: ./psi-eps-converted-to.pdf Graphic file (type pdf)
-<use ./psi-eps-converted-to.pdf>
-Package pdftex.def Info: ./psi-eps-converted-to.pdf  used on input line 61.
-(pdftex.def)             Requested size: 120.57825pt x 42.67912pt.
-<../img/ess.png, id=36, 156.0375pt x 84.096pt>
-File: ../img/ess.png Graphic file (type png)
-<use ../img/ess.png>
-Package pdftex.def Info: ../img/ess.png  used on input line 62.
-(pdftex.def)             Requested size: 79.18997pt x 42.67912pt.
-<../img/Jülich.jpg, id=37, 155.6214pt x 45.2892pt>
-File: ../img/Jülich.jpg Graphic file (type jpg)
-<use ../img/Jülich.jpg>
-Package pdftex.def Info: ../img/Jülich.jpg  used on input line 63.
-(pdftex.def)             Requested size: 146.65218pt x 42.67912pt.
-Package epstopdf Info: Source file: <../img/nicos-text.eps>
-(epstopdf)                    date: 2024-01-23 13:14:35
-(epstopdf)                    size: 26398 bytes
-(epstopdf)             Output file: <./nicos-text-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-01-29 12:00:13
-(epstopdf)                    size: 10870 bytes
-(epstopdf)             Command: <repstopdf --outfile=./nicos-text-eps-converted
--to.pdf ../img/nicos-text.eps>
-(epstopdf)             \includegraphics on input line 65.
-Package epstopdf Info: Output file is already uptodate.
-<./nicos-text-eps-converted-to.pdf, id=38, 297.11pt x 119.44624pt>
-File: ./nicos-text-eps-converted-to.pdf Graphic file (type pdf)
-<use ./nicos-text-eps-converted-to.pdf>
-Package pdftex.def Info: ./nicos-text-eps-converted-to.pdf  used on input line 
-65.
-(pdftex.def)             Requested size: 106.15707pt x 42.67912pt.
-Package epstopdf Info: Source file: <../img/SECoP12_subtitle.eps>
-(epstopdf)                    date: 2024-01-23 13:14:35
-(epstopdf)                    size: 1389587 bytes
-(epstopdf)             Output file: <./SECoP12_subtitle-eps-converted-to.pdf>
-(epstopdf)                    date: 2024-01-29 12:00:20
-(epstopdf)                    size: 12055 bytes
-(epstopdf)             Command: <repstopdf --outfile=./SECoP12_subtitle-eps-con
-verted-to.pdf ../img/SECoP12_subtitle.eps>
-(epstopdf)             \includegraphics on input line 86.
-Package epstopdf Info: Output file is already uptodate.
-<./SECoP12_subtitle-eps-converted-to.pdf, id=39, 477.785pt x 160.6pt>
-File: ./SECoP12_subtitle-eps-converted-to.pdf Graphic file (type pdf)
-<use ./SECoP12_subtitle-eps-converted-to.pdf>
-Package pdftex.def Info: ./SECoP12_subtitle-eps-converted-to.pdf  used on input
- line 86.
-(pdftex.def)             Requested size: 169.29044pt x 56.9055pt.
+Package pdftex.def Info: ../img/Hum_cell.png  used on input line 28.
+(pdftex.def)             Requested size: 51.21504pt x 70.67622pt.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../img/Hum_cell.png> <./bl
-uesky-logo-dark-eps-converted-to.pdf> <../img/1200px-TANGO_controls_logo.png (P
-NG copy)> <../img/HZB_Logo_A4_RGB.jpg> <./desy_logo_3c_web-eps-converted-to.pdf
-> <./psi-eps-converted-to.pdf> <../img/ess.png> <../img/Jülich.jpg> <./nicos-t
-ext-eps-converted-to.pdf> <./SECoP12_subtitle-eps-converted-to.pdf>] (./motivat
-ion.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <../img/Hum_cell.png>]
+(./secop-ophyd-arch.aux) ) 
 Here is how much of TeX's memory you used:
- 51970 strings out of 478287
- 1341086 string characters out of 5849288
- 1754432 words of memory out of 5000000
- 69329 multiletter control sequences out of 15000+600000
- 502252 words of font info for 51 fonts, out of 8000000 for 9000
+ 51848 strings out of 478287
+ 1338200 string characters out of 5849288
+ 1753512 words of memory out of 5000000
+ 69221 multiletter control sequences out of 15000+600000
+ 499698 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 104i,8n,120p,1628b,966s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/shar
-e/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/share/texlive/texmf-d
-ist/fonts/type1/public/kpfonts/jkpttbn8a.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/kpfonts/jkpttmn8a.pfb>
-Output written on motivation.pdf (1 page, 716381 bytes).
+ 104i,8n,120p,1634b,871s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8
+r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/kpfonts/jkpmsc8a.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/kpfonts/jkpttmn8a.pfb>
+Output written on secop-ophyd-arch.pdf (1 page, 283327 bytes).
 PDF statistics:
- 95 PDF objects out of 1000 (max. 8388607)
- 54 compressed objects within 1 object stream
+ 64 PDF objects out of 1000 (max. 8388607)
+ 32 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 114 words of extra memory for PDF output out of 10000 (max. 10000000)
 

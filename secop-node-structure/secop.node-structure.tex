@@ -1,0 +1,40 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{color,xcolor}
+
+\usepackage[utf8]{inputenc} 
+
+\input{../praeambel}
+\definecolor{devicecol}{HTML}{fc8d59}
+\definecolor{signalcol}{HTML}{91bfdb}
+\definecolor{signalxcol}{HTML}{ffffbf}
+
+\def\devcol{devicecol!60}
+\def\sigcol{signalcol!60}
+\def\sigxcol{signalxcol!60}
+
+
+\begin{document}
+
+		
+	
+			\begin{forest}
+		forked edges,
+		for tree={%
+			rounded corners,
+			l sep=0.4cm,
+			s sep=0.1cm,
+			minimum height=0.1cm,
+			minimum width=2cm,
+			align=center,edge={-}}
+		[Sample Environment Control Node\\(SEC Node),,for tree={fill=\devcol}
+		[Modules,for tree={fill=\devcol}				
+		[Parameters,for tree={fill=\sigcol} [Properties,for tree={fill=white}] ]
+		[Commands,for tree={fill=\sigxcol} [Properties,for tree={fill=white}] ]
+		[Properties,for tree={fill=\sigcol}]]
+		[Properties,for tree={fill=\sigcol}]
+		]
+	\end{forest}
+
+
+
+\end{document}
