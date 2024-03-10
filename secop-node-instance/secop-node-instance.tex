@@ -5,20 +5,21 @@
 
 \input{../praeambel}
 
-
-
+\newcommand{\propsize}{\footnotesize}
+\newcommand{\proptextw}{2.2cm}
+\newcommand{\propcol}{blue!15}
 
 
 \tikzset{% NodeInstance
 	base/.style    = {draw, thick, rectangle, minimum height = 3em,
 		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners=0.8em},
-	ecs/.style = {object,fill=orange!30,font = \Large},
+	ecs/.style = {object,fill=orange!30,font = \Large\ttfamily},
 	node/.style = {
 		base,
 		font=\large,
 		rectangle split,
 		rectangle split horizontal,
-		rectangle split part fill={green!30,blue!5},
+		rectangle split part fill={green!30,\propcol},
 		rectangle split parts=2
 		%text width =2cm
 	},
@@ -29,24 +30,41 @@
 		font=\large,
 		rectangle split,
 		rectangle split horizontal,
-		rectangle split part fill={red!20,blue!5},
+		rectangle split part fill={red!20,\propcol},
 		rectangle split parts=2
 		%text width =2cm
+	},
+	parameter/.style = {
+		base,
+		font=\large,
+		rectangle split,
+		rectangle split horizontal,
+		rectangle split part fill={yellow!20,\propcol},
+		rectangle split parts=2,
+		node distance = 1mm
+		%text width =2cm
+	},
+	command/.style = {
+		base,
+		font=\large,
+		rectangle split,
+		rectangle split horizontal,
+		rectangle split part fill={yellow!20,\propcol},
+		rectangle split parts=2,
+		node distance = 1mm
+		%text width =2cm
+	},
+	block/.style = {
+		rounded corners=0.8em,
+		inner sep = 0.2cm,
+		draw=black
 	},
 	module_no_split/.style = {
 		base,
 		font=\large,
 		fill=red!20,
 	},
-	acessibles/.style = {
-	base,
-	rounded corners=0.8em,
-	font=\large,
-	rectangle split,
-	rectangle split part fill={yellow!30,yellow!15,yellow!15},
-	rectangle split parts=3
-	%text width =2cm
-	},
+	acessibles/.style ={font= \ttfamily\large,node distance = 1mm},
 	consists/.style ={
 	line width=0.5mm
 	},
@@ -63,31 +81,36 @@
 	
 	
 \footnotesize
+
+\pgfdeclarelayer{background layer}
+\pgfdeclarelayer{foreground layer}
+\pgfsetlayers{background layer,main,foreground layer}
+
 	\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45,every text node part/.style={align=center}]
 	
 	\draw
 	node at (0,0) [ecs] (ecs) {Experimental Control System}
 	
-	node [node,below = of ecs,xshift = -4cm,yshift = -1cm] (NodeA) {\texttt{Node A} \nodepart[text width=2cm]{two}  
+	node [node,below = of ecs,xshift = -4cm,yshift = -1cm] (NodeA) {\texttt{Node A} \nodepart[text width=\proptextw]{two}  
 		\footnotesize \texttt{Properties:}\\		
-		\scriptsize\texttt{%
+		\propsize\texttt{%
 		$\bullet$ description\\%
 		$\bullet$ equipment\_id\\%
 		$\bullet$ ...\\}
 	} 
 
-	node [node,below = of ecs,xshift = 4cm,yshift = -1cm] (NodeB) {\texttt{Node B} \nodepart[text width=2cm]{two}  
+	node [node,below = of ecs,xshift = 4cm,yshift = -1cm] (NodeB) {\texttt{Node B} \nodepart[text width=\proptextw]{two}  
 	\footnotesize \texttt{Properties:}\\		
-	\scriptsize\texttt{%
+	\propsize\texttt{%
 		$\bullet$ description\\%
 		$\bullet$ equipment\_id\\%
 		$\bullet$ ...\\}
 	} 
 	
 
-	node [module,below= of NodeA] (mod1){\texttt{Module A.1} \nodepart[text width=2.5cm]{two}  
+	node [module,below= of NodeA] (mod1){\texttt{Module A.1} \nodepart[text width=3cm]{two}  
 		\footnotesize \texttt{Properties:}\\		
-		\scriptsize\texttt{%
+		\propsize\texttt{%
 			$\bullet$ description\\%
 			$\bullet$ interface\_classes\\%
 			$\bullet$ ...\\}
@@ -97,27 +120,75 @@
 	node [module_no_split,below = of NodeB,xshift = -1.7cm] (modB1) {\texttt{Module B.1}}
 	node [module_no_split,below = of NodeB,xshift = 1.7cm] (modB2) {\texttt{Module B.2}}
 
-	node [acessibles,below= of mod1] (acc1){
-		\texttt{Acessibles}%
-		\nodepart[text width=2.5cm]{two}  
-	\footnotesize \texttt{Parameters:}\\		
-	\scriptsize\texttt{%
-		$\bullet$ value\\%
-		$\bullet$ status\\%
-		$\bullet$ ...\\}
-			\nodepart[text width=2.5cm]{three}  
-	\footnotesize \texttt{Commands:}\\		
-	\scriptsize\texttt{%
-		$\bullet$ stop\\%
-		$\bullet$ ...\\}
-	} 
-
-	node [property,right = of acc1,yshift = 0.55cm](param_prop1) {Properties}
-	node [property,below = of param_prop1](param_prop2) {Properties}
-	node [property,below = of param_prop2,yshift = -0.55cm](cmd_prop) {Properties}
-	
-	
 	;
+	\begin{pgfonlayer}{foreground layer}
+	\draw
+	node [acessibles,below= of mod1,yshift = -1cm,font = \Large\ttfamily] (accs){Accessibles} 
+	node [acessibles,below= of accs,yshift = -0.3cm] (params){Parameters} 
+	
+	
+	node [parameter,below = of params] (para1){
+		\nodepart[text width=1.3cm]{one} 
+		\texttt{value} \nodepart[text width=2.3cm]{two}  
+		\footnotesize \texttt{Properties:}\\		
+		\propsize\texttt{%
+			$\bullet$ description\\%
+			$\bullet$ data\_info\\%
+			$\bullet$ ...\\}
+	
+	}
+	node [parameter,below = of para1] (para2){
+	\nodepart[text width=1.3cm]{one}
+	\texttt{status} \nodepart[text width=2.3cm]{two}  
+	\footnotesize \texttt{Properties:}\\		
+	\propsize\texttt{%
+		$\bullet$ description\\%
+		$\bullet$ data\_info\\%
+		$\bullet$ ...\\}
+	}
+	node [parameter,below = of para2] (para3){
+	\nodepart[text width=1.3cm]{one}
+	\texttt{...} \nodepart[text width=2.3cm]{two}  
+	\footnotesize \texttt{Properties:}\\		
+	\propsize\texttt{%
+		$\bullet$ ...\\}
+	}
+
+
+	node [command,right= of para1,node distance = 1mm,xshift = 0.5cm] (cmd1){
+	\nodepart[text width=1.3cm]{one}
+	\texttt{stop} \nodepart[text width=2.3cm]{two}  
+	\footnotesize \texttt{Properties:}\\		
+	\propsize\texttt{%
+	$\bullet$ description\\%
+	$\bullet$ data\_info\\%
+	$\bullet$ ...\\}
+	}
+
+	node [acessibles,above= of cmd1] (commands){Commands} 
+	
+	node [parameter,below = of cmd1] (cmd2){
+	\nodepart[text width=1.3cm]{one}
+	\texttt{...} \nodepart[text width=2.3cm]{two}  
+	\footnotesize \texttt{Properties:}\\		
+	\propsize\texttt{%
+		$\bullet$ ...\\}
+	}
+	;
+	 \end{pgfonlayer}
+	\node [block,thick, fill= yellow!15 ,fit={(commands) (cmd1) (cmd2) }] (cmd_block){};
+	\node [block,thick, fill= yellow!15, fit={(params) (para1) (para2) (para3) }] (param_block){};
+	
+	\begin{pgfonlayer}{background layer}
+
+	\node [block, fill= yellow!15,thick,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {-};
+	\end{pgfonlayer}
+
+	
+
+	
+	
+	
 	
 	
 	
@@ -128,14 +199,14 @@
 	\draw[<->,secop] (ecs) -- (NodeB)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
 	
 	\draw[-,consists] (NodeA) --(mod1);
-	\draw[-,consists] (mod1) --(acc1);
+	%\draw[-,consists] (mod1) --(acc1);
 
 	\draw[-,consists] (NodeB) --(modB1);
 	\draw[-,consists] (NodeB) --(modB2);
 	
-	\draw[-,consists] (param_prop1) -- (-4.15,-9.1);
-	\draw[-,consists] (param_prop2) -- (-4.15,-9.4);
-	\draw[-,consists] (cmd_prop) -- (-4.4,-10.75);
+	\draw[-,consists] (accessibles) -- (mod1);
+	
+
 	
 \end{tikzpicture}
 
