@@ -7,7 +7,7 @@
 
 \newcommand{\propsize}{\footnotesize}
 \newcommand{\proptextw}{2.2cm}
-\newcommand{\propcol}{blue!15}
+
 
 
 \tikzset{% NodeInstance
@@ -19,7 +19,7 @@
 		font=\large,
 		rectangle split,
 		rectangle split horizontal,
-		rectangle split part fill={green!30,\propcol},
+		rectangle split part fill={\nodecol,\propcol},
 		rectangle split parts=2
 		%text width =2cm
 	},
@@ -30,7 +30,7 @@
 		font=\large,
 		rectangle split,
 		rectangle split horizontal,
-		rectangle split part fill={red!20,\propcol},
+		rectangle split part fill={\modcol,\propcol},
 		rectangle split parts=2
 		%text width =2cm
 	},
@@ -39,7 +39,7 @@
 		font=\large,
 		rectangle split,
 		rectangle split horizontal,
-		rectangle split part fill={yellow!20,\propcol},
+		rectangle split part fill={\accesscol,\propcol},
 		rectangle split parts=2,
 		node distance = 1mm
 		%text width =2cm
@@ -49,7 +49,7 @@
 		font=\large,
 		rectangle split,
 		rectangle split horizontal,
-		rectangle split part fill={yellow!20,\propcol},
+		rectangle split part fill={\accesscol,\propcol},
 		rectangle split parts=2,
 		node distance = 1mm
 		%text width =2cm
@@ -62,7 +62,7 @@
 	module_no_split/.style = {
 		base,
 		font=\large,
-		fill=red!20,
+		fill=\modcol,
 	},
 	acessibles/.style ={font= \ttfamily\large,node distance = 1mm},
 	consists/.style ={
@@ -176,12 +176,12 @@
 	}
 	;
 	 \end{pgfonlayer}
-	\node [block,thick, fill= yellow!15 ,fit={(commands) (cmd1) (cmd2) }] (cmd_block){};
-	\node [block,thick, fill= yellow!15, fit={(params) (para1) (para2) (para3) }] (param_block){};
+	\node [block,thick, fill= \accesscol,fit={(commands) (cmd1) (cmd2) }] (cmd_block){};
+	\node [block,thick, fill= \accesscol, fit={(params) (para1) (para2) (para3) }] (param_block){};
 	
 	\begin{pgfonlayer}{background layer}
 
-	\node [block, fill= yellow!15,thick,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {-};
+	\node [block, fill= \accesscol,thick,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {-};
 	\end{pgfonlayer}
 
 	
