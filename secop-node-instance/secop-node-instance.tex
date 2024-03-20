@@ -8,12 +8,14 @@
 \newcommand{\propsize}{\footnotesize}
 \newcommand{\proptextw}{2.2cm}
 
+\setlist[itemize]{leftmargin=*,noitemsep,topsep=0.1em,font=\propsize}
+
 
 
 \tikzset{% NodeInstance
 	base/.style    = {draw, thick, rectangle, minimum height = 3em,
 		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners=0.8em},
-	ecs/.style = {object,fill=orange!30,font = \Large\ttfamily},
+	ecs/.style = {object,fill=\ecsscol,font = \Large,inner sep = 1.5em},
 	node/.style = {
 		base,
 		font=\large,
@@ -64,127 +66,150 @@
 		font=\large,
 		fill=\modcol,
 	},
-	acessibles/.style ={font= \ttfamily\large,node distance = 1mm},
+	acessibles/.style ={font= \large,node distance = 1mm},
 	consists/.style ={
 	line width=0.5mm
 	},
 	secop/.style ={
 		line width=0.5mm,
-		color = purple
+		color = black
 	},
 	every text node part/.style={align=center}
 		
 }
+
 
 \begin{document}
 	
 	
 	
 \footnotesize
-
+\pgfdeclarelayer{bbackground layer}
 \pgfdeclarelayer{background layer}
 \pgfdeclarelayer{foreground layer}
-\pgfsetlayers{background layer,main,foreground layer}
+\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
 
-	\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45,every text node part/.style={align=center}]
-	
+	\begin{tikzpicture}[
+		auto,
+		thick,
+		node distance=2cm,
+		>=triangle 45,
+		every text node part/.style={align=center}	
+		]
+
 	\draw
+	
 	node at (0,0) [ecs] (ecs) {Experimental Control System}
 	
-	node [node,below = of ecs,xshift = -4cm,yshift = -1cm] (NodeA) {\texttt{Node A} \nodepart[text width=\proptextw]{two}  
-		\footnotesize \texttt{Properties:}\\		
-		\propsize\texttt{%
-		$\bullet$ description\\%
-		$\bullet$ equipment\_id\\%
-		$\bullet$ ...\\}
+	node [node,below = of ecs,xshift = -4cm,yshift = -1cm] (NodeA) {Node A \nodepart[text width=\proptextw,align=left]{two}  
+		\footnotesize Properties:\\		
+		\begin{itemize}
+			\item description
+			\item equipment\_id
+			\item ...
+		\end{itemize}
+
 	} 
 
-	node [node,below = of ecs,xshift = 4cm,yshift = -1cm] (NodeB) {\texttt{Node B} \nodepart[text width=\proptextw]{two}  
-	\footnotesize \texttt{Properties:}\\		
-	\propsize\texttt{%
-		$\bullet$ description\\%
-		$\bullet$ equipment\_id\\%
-		$\bullet$ ...\\}
+	node [node,below = of ecs,xshift = 4cm,yshift = -1cm] (NodeB) {Node B \nodepart[text width=\proptextw]{two}  
+	\footnotesize Properties:\\		
+	\begin{itemize}
+		\item description
+		\item equipment\_id
+		\item ...
+	\end{itemize}
 	} 
 	
 
-	node [module,below= of NodeA] (mod1){\texttt{Module A.1} \nodepart[text width=3cm]{two}  
-		\footnotesize \texttt{Properties:}\\		
-		\propsize\texttt{%
-			$\bullet$ description\\%
-			$\bullet$ interface\_classes\\%
-			$\bullet$ ...\\}
+	node [module,below= of NodeA] (mod1){Module A.1 \nodepart[text width=3cm]{two}  
+		\footnotesize Properties:\\
+		\begin{itemize}
+			\item description
+			\item interface\_classes
+			\item ...
+		\end{itemize}		
+
 	} 
 
 
-	node [module_no_split,below = of NodeB,xshift = -1.7cm] (modB1) {\texttt{Module B.1}}
-	node [module_no_split,below = of NodeB,xshift = 1.7cm] (modB2) {\texttt{Module B.2}}
+	node [module_no_split,below = of NodeB,xshift = -1.7cm] (modB1) {Module B.1}
+	node [module_no_split,below = of NodeB,xshift = 1.7cm] (modB2) {Module B.2}
 
 	;
 	\begin{pgfonlayer}{foreground layer}
 	\draw
-	node [acessibles,below= of mod1,yshift = -1cm,font = \Large\ttfamily] (accs){Accessibles} 
+	node [acessibles,below= of mod1,yshift = -1cm,font = \Large] (accs){Accessibles} 
 	node [acessibles,below= of accs,yshift = -0.3cm] (params){Parameters} 
 	
 	
 	node [parameter,below = of params] (para1){
 		\nodepart[text width=1.3cm]{one} 
-		\texttt{value} \nodepart[text width=2.3cm]{two}  
-		\footnotesize \texttt{Properties:}\\		
-		\propsize\texttt{%
-			$\bullet$ description\\%
-			$\bullet$ data\_info\\%
-			$\bullet$ ...\\}
-	
+		value \nodepart[text width=2.3cm]{two}  
+		\footnotesize Properties:\\
+		\begin{itemize}
+			\item description
+			\item data\_info
+			\item...
+		\end{itemize}		
 	}
+
 	node [parameter,below = of para1] (para2){
 	\nodepart[text width=1.3cm]{one}
-	\texttt{status} \nodepart[text width=2.3cm]{two}  
-	\footnotesize \texttt{Properties:}\\		
-	\propsize\texttt{%
-		$\bullet$ description\\%
-		$\bullet$ data\_info\\%
-		$\bullet$ ...\\}
+	status \nodepart[text width=2.3cm]{two}  
+	\footnotesize Properties:\\		
+	\begin{itemize}
+		\item description
+		\item data\_info
+		\item...
+	\end{itemize}
 	}
 	node [parameter,below = of para2] (para3){
 	\nodepart[text width=1.3cm]{one}
-	\texttt{...} \nodepart[text width=2.3cm]{two}  
-	\footnotesize \texttt{Properties:}\\		
-	\propsize\texttt{%
-		$\bullet$ ...\\}
+	... \nodepart[text width=2.3cm]{two}  
+	\footnotesize Properties:\\		
+	\begin{itemize}
+		\item...
+	\end{itemize}
 	}
 
 
 	node [command,right= of para1,node distance = 1mm,xshift = 0.5cm] (cmd1){
 	\nodepart[text width=1.3cm]{one}
-	\texttt{stop} \nodepart[text width=2.3cm]{two}  
-	\footnotesize \texttt{Properties:}\\		
-	\propsize\texttt{%
-	$\bullet$ description\\%
-	$\bullet$ data\_info\\%
-	$\bullet$ ...\\}
+	stop \nodepart[text width=2.3cm]{two}  
+	\footnotesize Properties:\\		
+	\begin{itemize}
+		\item description
+		\item data\_info
+		\item...
+	\end{itemize}
 	}
 
 	node [acessibles,above= of cmd1] (commands){Commands} 
 	
 	node [parameter,below = of cmd1] (cmd2){
 	\nodepart[text width=1.3cm]{one}
-	\texttt{...} \nodepart[text width=2.3cm]{two}  
-	\footnotesize \texttt{Properties:}\\		
-	\propsize\texttt{%
-		$\bullet$ ...\\}
+	... \nodepart[text width=2.3cm]{two}  
+	\footnotesize Properties:\\		
+	\begin{itemize}
+		\item...
+	\end{itemize}
 	}
 	;
 	 \end{pgfonlayer}
 	\node [block,thick, fill= \accesscol,fit={(commands) (cmd1) (cmd2) }] (cmd_block){};
 	\node [block,thick, fill= \accesscol, fit={(params) (para1) (para2) (para3) }] (param_block){};
 	
+	
+	
 	\begin{pgfonlayer}{background layer}
-
-	\node [block, fill= \accesscol,thick,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {-};
+	\draw[-,consists] (accs) -- (mod1);
+	\node [block, fill= accessiblecolor!30,thick,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {};
 	\end{pgfonlayer}
 
 	
+	\begin{pgfonlayer}{bbackground layer}
+	\node [block,fill = black!5,thick,inner sep=2em,fit = {(accessibles)(ecs)(NodeA)(NodeB)(mod1)(modB1)(modB2)}]	(all){};
+	\end{pgfonlayer}	
 
 	
 	
@@ -193,10 +218,10 @@
 	
 	
 	\draw[<->,secop] (ecs) -- (NodeA)  node[midway,above,xshift =0.1cm,sloped] {\textbf{SECoP}} ;
-	\draw[<->,secop] (ecs) -- (NodeA)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
+	%\draw[<->,secop] (ecs) -- (NodeA)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
 	
 	\draw[<->,secop] (ecs) -- (NodeB)  node[midway,above,xshift =0.1cm,sloped] {\textbf{SECoP}} ;
-	\draw[<->,secop] (ecs) -- (NodeB)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
+	\-%draw[<->,secop] (ecs) -- (NodeB)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
 	
 	\draw[-,consists] (NodeA) --(mod1);
 	%\draw[-,consists] (mod1) --(acc1);
@@ -204,7 +229,7 @@
 	\draw[-,consists] (NodeB) --(modB1);
 	\draw[-,consists] (NodeB) --(modB2);
 	
-	\draw[-,consists] (accessibles) -- (mod1);
+	
 	
 
 	
