@@ -8,7 +8,8 @@
 
 \tikzset{% NodeInstance
 	base/.style    = {
-		draw,thick,
+		thick,
+		draw = black,
 		rectangle,
 		minimum height = 3em,
 		minimum width = 8em,
@@ -19,7 +20,8 @@
 	},
 	ecs/.style = {
 		object,
-		fill=\ecsscol,inner sep = 1.5em
+		fill=\ecsscol,
+		inner sep = 1.5em
 	},
 	node/.style = {
 		base,
@@ -28,7 +30,7 @@
 	},
 	property/.style = {
 		base,
-		fill=\propcol,
+		fill=\propcol
 		},
 	module/.style = {
 		base,
@@ -49,7 +51,7 @@
 		base,
 		node distance = 2cm
 	},
-	acessibles/.style ={font= \large,node distance = 1mm},
+	acessibles/.style ={node distance = 0mm,inner sep = 0em},
 	consists/.style ={
 		line width=0.5mm
 	},
@@ -81,7 +83,7 @@
 		node [property,right = of modules] (node_properties) {Properties}
 		
 		
-		node [command, below  = of modules, yshift = -2cm] (commands){Commands}
+		node [command, below  = of modules, yshift = -1.4cm, xshift = -1.2cm] (commands){Commands}
 		
 		node [command, left  = of commands] (parameters){Parameters}
 		
@@ -92,11 +94,11 @@
 		node [property,below = of parameters] (param_properties) {Properties}
 		;
 		
-		\node [acessibles,fill = accessiblecolor!30,above = of parameters, yshift = 1cm,font = \large] (accs){Accessibles};
+		\node [acessibles,fill = accessiblecolor!30,above = of parameters, yshift = 0.7cm,font = \large] (accs){Accessibles};
 		
 		\begin{pgfonlayer}{background layer}
 			%\draw[-,consists] (accs) -- (mod1);
-			\node [block, fill= accessiblecolor!30,thick,fit= {(accs)(param_properties)(cmd_properties) (commands) (parameters)}] (accs_block) {};
+			\node [block, fill= accessiblecolor!30,thick,inner sep=1em,fit= {(accs)(param_properties)(cmd_properties) (commands) (parameters)}] (accs_block) {};
 		\end{pgfonlayer}
 		
 		
@@ -105,22 +107,26 @@
 		\node [property,right = of  accs_block.north east,anchor=north west] (mod_properties) {Properties};
 		
 		
-		\draw[-,consists] (nodes) to[out= 270,in=90] (modules);
-		\draw[-,consists] (nodes) to[out= 270,in=90] (node_properties);
+		\draw[-,consists] (nodes) -- ++(0,-1.25) -| (modules);
+		\draw[-,consists] (nodes) -- ++(0,-1.25) -| (node_properties);
 		
-		\draw[-,consists] (accs_block.north) to[out= 270,in=90]  (parameters);
-		\draw[-,consists] (accs_block.north) to[out= 270,in=90]  (commands);
-		\draw[-,consists] (modules) to[out= 270,in=90]  (accs_block);
+
+		\draw[-,consists] (modules) -- ++(0,-1.05) -|  (accs_block);
 		
-		\draw[-,consists] (modules) to[out= 270,in=90]  (mod_properties);
+		\draw[-,consists] (modules) -- ++(0,-1.05) -|  (mod_properties);
 		
 		\draw[-,consists] (parameters) to[out= 270,in=90]  (param_properties);
 		\draw[-,consists] (commands) to[out= 270,in=90]  (cmd_properties);
 		
 		
+		\draw[-,consists] (accs_block.north) -- ++(0,-1) -| (parameters); 
+		\draw[-,consists] (accs_block.north) -- ++(0,-1) -| (commands); 
+		
 		
 
-		
+		\begin{pgfonlayer}{bbackground layer}
+			\node [block,draw = black,fill = black!5,thick,inner sep=2em,fit = {(accs_block)(mod_properties)(node_properties)(nodes)(modules)}]	(all){};
+		\end{pgfonlayer}	
 
 		
 	\end{tikzpicture}

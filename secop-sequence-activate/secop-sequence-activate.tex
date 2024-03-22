@@ -1,0 +1,110 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{color,xcolor}
+
+\usepackage[utf8]{inputenc} 
+\usepackage{pgf-umlsd}
+
+
+
+\input{../praeambel}
+
+
+
+
+\newcommand{\drawll}[2]{
+	\draw[lifeline] (#1) -- ([yshift=- #2] #1);
+}
+
+
+
+
+
+%##########################
+% DEFINES
+
+\def\lllength{9cm}
+
+
+
+
+
+\begin{document}
+	\begin{tikzpicture}
+		
+		
+		
+		\draw
+		node[ecs](ecs){ECS}
+		node[node,right  of =  ecs](node){SEC Node}	
+		;
+		
+		\drawll{ecs.south}{\lllength}
+		\drawll{node.south}{\lllength}
+		
+		
+		\coordinate(llecs)  at (ecs.south);
+		\coordinate(llnode) at (node.south);
+		
+		
+		
+		\draw	
+		
+		node[active,fill = \ecsscol,below = of node,minimum height = 4cm, yshift = -1cm] (activate){}
+		
+
+		
+		;
+		
+		
+		%##### Activate
+		\draw[mess] let \p1= (activate.north west),
+		\p2= (ecs.south) in
+		(\x2,\y1 + 0.5cm) -- node [messtext] {activate}(\p1);
+		
+	
+		
+		\draw[mess] let \p1= (activate.south west), 
+		\p2= (ecs.south) in
+		(\p1) -- node [messtext]{active}(\x2,\y1 - 0.5cm);
+		
+		%##### Updates during active
+
+
+				
+		%< update t1:value [295.13,{"t":150539648.188388,"e":0.01}]
+		\draw[mess] let %
+			\p1= (activate.north west), 
+			\p2= (ecs.south) in
+		([yshift = -1cm]\p1) -- node [messtext]{update t1:value [295.13,\{"t":150539648.188388\}]}([yshift = -1cm]\x2,\y1 - 0.5cm);
+		
+		
+		%< update t1:status [[400,"heater broken or disconnected"],{"t":1505396348.288388}]
+		\draw[mess] let %
+			\p1= (activate.north west), 
+			\p2= (ecs.south) in
+		([yshift = -2.5cm]\p1) -- node [messtext]{update t1:status [[400,"heater broken or disconnected"], \{"t":1505396348.288388\}]}([yshift = -2.5cm]\x2,\y1 - 0.5cm);
+		
+		
+		%##### Updates post active
+		
+		%< update t1:value [295.14,{"t":1505396349.259845,"e":0.01}]
+		\draw[mess] let %
+		\p1= (node.south), 
+		\p2= (ecs.south) in
+		([yshift = -6.5cm]\p1) -- node [messtext]{update t1:value [295.14,\{"t":1505396349.259845\}]}([yshift = -6.5cm]\x2,\y2 - 0.5cm);
+		
+		
+		%< update t1:value [295.13,{"t":1505396350.324752,"e":0.01}]
+		\draw[mess] let %
+		\p1= (node.south), 
+		\p2= (ecs.south) in
+		([yshift = -8cm]\p1) -- node [messtext]{update t1:value [295.13,\{"t":1505396350.324752\}]}([yshift = -8cm]\x2,\y2 - 0.5cm);
+		
+		
+		
+	\end{tikzpicture}
+	
+	
+	
+	
+\end{document}

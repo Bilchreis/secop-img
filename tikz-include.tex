@@ -62,6 +62,69 @@
 
 
 
+\tikzset{
+	base/.style    = {
+		rectangle,
+		draw,
+		anchor=west,
+		minimum height=0.8cm,
+		minimum width=1.6cm,
+		fill=white,
+		drop shadow={opacity=0.5,fill=black},
+		node distance = 7cm
+	},%
+	node/.style = {
+		base,
+		fill = \nodecol,
+	},%
+	ecs/.style = {
+		base,
+		fill=\ecsscol
+	},%
+	active/.style = {
+		rectangle,
+		draw,
+		minimum width = 0.2cm,
+		minimum height=1cm,
+		fill = gray!20,
+		node distance = 1mm and 1cm
+	},%
+	lifeline/.style ={
+		%line width=0.5mm,
+		-,
+		color = black,
+		dotted
+	},%
+	secop/.style ={
+		line width=0.5mm,
+		color = black
+	},%
+	synchron/.style ={
+		->,
+		>=triangle 60
+	},%
+	asynchron/.style ={
+		->,	
+		>=angle 60
+	},%
+	syncreturn/.style ={
+		->,	
+		dashed,
+		>=angle 60
+	},%
+	mess/.style ={
+		->,
+		>=angle 60
+	},%
+	messtext/.style ={
+		font= \scriptsize\ttfamily,
+		midway,
+		above,
+		sloped,
+		align = center,
+		text width = 6.5cm 
+	}
+}
 
 
 
