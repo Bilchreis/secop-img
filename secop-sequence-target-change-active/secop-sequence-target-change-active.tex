@@ -3,6 +3,7 @@
 
 \usepackage[utf8]{inputenc} 
 \usepackage{pgf-umlsd}
+\usetikzlibrary{patterns}
 
 
 
@@ -16,9 +17,31 @@
 }
 
 
-
-
-
+\tikzset{
+	statbar/.style    = {
+		rectangle,
+		draw,
+		thin,
+		minimum width=0.2cm,
+		node distance = 0cm	
+	},%
+	statidle/.style    = {
+		statbar,
+		fill = green,
+		draw = green
+	},%
+	statbusy/.style    = {
+		statbar,
+		fill = orange,
+		draw = orange
+	},%
+	statundefined/.style    = {
+		statbar,
+		pattern=north west lines,
+		pattern color=gray,
+		draw = gray
+	}%
+}
 %##########################
 % DEFINES
 
@@ -26,7 +49,10 @@
 
 
 
-
+\pgfdeclarelayer{bbackground layer}
+\pgfdeclarelayer{background layer}
+\pgfdeclarelayer{foreground layer}
+\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
 
 \begin{document}
 	\begin{tikzpicture}
@@ -110,7 +136,26 @@
 		
 		
 		
+		\begin{pgfonlayer}{background layer}
+
+
 		
+		\draw
+		
+		% ECS Status Bar		
+		node[statundefined,below = of ecs.south,xshift = -.3cm,minimum height = 2.6cm] (ecs_undefined){}
+		node[statidle,below = of ecs_undefined,minimum height = 2.58cm] (ecs_idle){}
+		node[statbusy,below = of ecs_idle,minimum height = 4.75cm] (ecs_busy){}
+		
+		% Node Status Bar
+		node[statidle,below = of node.south,xshift = .3cm,minimum height = 4.7cm] (node_idle){}
+		node[statbusy,below = of node_idle,minimum height = 5.28cm] (node_busy){}
+		
+		
+		
+		;
+		
+		\end{pgfonlayer}
 
 		
 		
