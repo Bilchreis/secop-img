@@ -15,7 +15,6 @@
 
 
 
-
 %##########################
 % DEFINES
 
@@ -36,11 +35,16 @@
 		\draw
 		node[ecs](ecs){ECS}
 		node[node,right  of =  ecs](node){SEC Node}	
+		node[ecs,right  of =  node](client){Client}
+		
+		node[above of = ecs](active){active}
+		node[above of = client](active){inactive}
+		
 		;
 		
 		\drawll{ecs.south}{\lllength}
 		\drawll{node.south}{\lllength}
-		
+		\drawll{client.south}{\lllength}
 		
 		\coordinate(llecs)  at (ecs.south);
 		\coordinate(llnode) at (node.south);
@@ -59,26 +63,32 @@
 		
 		
 		%##### Read Status
-		\draw[mess] let \p1= (readstat.north west),
-		\p2= (ecs.south) in
+		\draw[mess] let \p1= (readstat.north east),
+		\p2= (client.south) in
 		(\x2,\y1 + 0.5cm) -- node [messtext] {read mf:status}(\p1);
 		
 		
 		
-		\draw[mess] let \p1= (readstat.south west), 
-		\p2= (ecs.south) in
+		\draw[mess] let \p1= (readstat.south east), 
+		\p2= (client.south) in
 		(\p1) -- node [messtext]{reply mf:status [[100,"OK"],\{...\}]}(\x2,\y1 - 0.5cm);
+		
+		
+		\draw[mess] let %
+		\p1= (node.south), 
+		\p2= (ecs.south) in
+		([yshift = -.5cm]\p1) -- node [messtext]{update mf:status [[100,"OK"],\{...\}]}([yshift = -.5cm]\x2,\y1 - 0.5cm);
 		
 		%##### change
 		
-		\draw[mess] let \p1= (changetarget.north west),
-		\p2= (ecs.south) in
+		\draw[mess] let \p1= (changetarget.north east),
+		\p2= (client.south) in
 		(\x2,\y1 + 0.5cm) -- node [messtext] {change mf:target 12}(\p1);
 		
 		
 		
-		\draw[mess] let \p1= (changetarget.south west), 
-		\p2= (ecs.south) in
+		\draw[mess] let \p1= (changetarget.south east), 
+		\p2= (client.south) in
 		(\p1) -- node [messtext]{changed mf:target [12,\{...\}]}(\x2,\y1 - 0.5cm);
 		
 		%#### Side Effects
@@ -107,31 +117,31 @@
 			\p2= (ecs.south) in
 		([yshift = -9cm]\p1) -- node [messtext]{update mf:value [0.01293,\{...\}]}([yshift = -9cm]\x2,\y2 - 0.5cm);
 		
-			%### reached target
-	% update mf:value [12.01194,{...}]
-	
-	\draw[mess] let %
-	\p1= (node.south), 
-	\p2= (ecs.south) in
-	([yshift = -11cm]\p1) -- node [messtext]{update mf:value [0.01293,\{...\}]}([yshift = -11cm]\x2,\y2 - 0.5cm);
-	
-	% update mf:status [[100,"at target"],{...}]		
-	
-	\draw[mess] let %
-	\p1= (node.south), 
-	\p2= (ecs.south) in
-	([yshift = -12.5cm]\p1) -- node [messtext]{update mf:status [[100,"at target"],\{...\}]	}([yshift = -12.5cm]\x2,\y2 - 0.5cm);
-	
-	
-	\begin{pgfonlayer}{background layer}
+		%### reached target
+		% update mf:value [12.01194,{...}]
 		
+		\draw[mess] let %
+		\p1= (node.south), 
+		\p2= (ecs.south) in
+		([yshift = -11cm]\p1) -- node [messtext]{update mf:value [0.01293,\{...\}]}([yshift = -11cm]\x2,\y2 - 0.5cm);
 		
+		% update mf:status [[100,"at target"],{...}]		
+		
+		\draw[mess] let %
+		\p1= (node.south), 
+		\p2= (ecs.south) in
+		([yshift = -12.5cm]\p1) -- node [messtext]{update mf:status [[100,"at target"],\{...\}]	}([yshift = -12.5cm]\x2,\y2 - 0.5cm);
+
+		
+		\begin{pgfonlayer}{background layer}
+
+
 		
 		\draw
 		
 		% ECS Status Bar		
-		node[statundefined,below = of ecs.south,xshift = -.6cm,minimum height = 2.6cm] (ecs_undefined){\rotatebox{90}{}}
-		node[statidle,below = of ecs_undefined,minimum height = 2.58cm] (ecs_idle){\rotatebox{90}{IDLE}}
+		node[statundefined,below = of ecs.south,xshift = -.6cm,minimum height = 1cm] (ecs_undefined){\rotatebox{90}{}}
+		node[statidle,below = of ecs_undefined,minimum height = 4.2cm] (ecs_idle){\rotatebox{90}{IDLE}}
 		node[statbusy,below = of ecs_idle,minimum height = 4.5cm] (ecs_busy){\rotatebox{90}{BUSY}}
 		node[statbusy,draw = none,fill = white,below = of ecs_busy,minimum height = 1cm] (ecs_busy_dot){\rotatebox{90}{\textbf{...}}}
 		node[statbusy,below = of ecs_busy_dot,minimum height = 2.25cm] (ecs_busy_cont){}
@@ -145,8 +155,10 @@
 		node[statidle,below = of node_busy_cont,minimum height = 1.5cm] (node_idle_at_target){}
 		
 		;
+		
 		\end{pgfonlayer}
 
+		
 		\draw[lifeline] let 
 		\p1= (node_busy_cont.north),
 		\p2= (node.south),
@@ -158,7 +170,6 @@
 		\p2= (ecs.south),
 		\p3= (ecs_idle_at_target.south) in
 		(\x2,\y1) -- (\x2,\y3);
-		
 		
 	\end{tikzpicture}
 	

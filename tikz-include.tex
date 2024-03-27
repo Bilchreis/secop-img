@@ -123,10 +123,38 @@
 		above,
 		sloped,
 		align = center,
-		text width = 6.5cm 
+		text width = 7.5cm 
 	}
 }
 
+\tikzset{
+	statbar/.style    = {
+		font = \scriptsize,
+		rectangle,
+		draw,
+		thin,
+		minimum width=0.4cm,
+		node distance = 0cm,
+		opacity = 0.4,
+		inner sep = 2pt
+	},%
+	statidle/.style    = {
+		statbar,
+		fill = idle,
+		draw = idle
+	},%
+	statbusy/.style    = {
+		statbar,
+		fill = busy,
+		draw = busy
+	},%
+	statundefined/.style    = {
+		statbar,
+		pattern=north west lines,
+		pattern color=gray,
+		draw = gray
+	}%
+}
 
 
 \definecolor{devicecol}{HTML}{fc8d59}
@@ -137,6 +165,10 @@
 \def\sigcol{signalcol!60}
 \def\sigxcol{signalxcol!60}
 
+
+\newcommand{\drawll}[2]{
+	\draw[lifeline] (#1) -- ([yshift=- #2] #1);
+}
 
 
 \newcommand{\makeGroup}[6]{

@@ -10,17 +10,6 @@
 
 
 
-
-
-
-\newcommand{\drawll}[2]{
-	\draw[lifeline] (#1) -- ([yshift=- #2] #1);
-}
-
-
-
-
-
 %##########################
 % DEFINES
 
@@ -42,6 +31,7 @@
 		
 		\drawll{ecs.south}{\lllength}
 		\drawll{node.south}{\lllength}
+		
 		
 		
 		\coordinate(llecs)  at (ecs.south);

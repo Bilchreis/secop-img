@@ -9,20 +9,10 @@
 \input{../praeambel}
 
 
-
-
-\newcommand{\drawll}[2]{
-	\draw[lifeline] (#1) -- ([yshift=- #2] #1);
-}
-
-
-
-
-
 %##########################
 % DEFINES
 
-\def\lllength{9cm}
+\def\lllength{9.5cm}
 
 
 
@@ -87,18 +77,25 @@
 		
 		%##### Updates post active
 		
+		%< error_update t1:_heaterpower ["HardwareError","heater broken or disconnected",{"t":1505396349.20}]
+		\draw[mess] let %
+		\p1= (node.south), 
+		\p2= (ecs.south) in
+		([yshift = -6.5cm]\p1) -- node [messtext]{error\_update t1:\_heaterpower ["HardwareError","heater broken or disconnected",\{"t":1505396349.20\}]}([yshift = -6.5cm]\x2,\y2 - 0.5cm);
+		
+		
 		%< update t1:value [295.14,{"t":1505396349.259845,"e":0.01}]
 		\draw[mess] let %
 		\p1= (node.south), 
 		\p2= (ecs.south) in
-		([yshift = -6.5cm]\p1) -- node [messtext]{update t1:value [295.14,\{"t":1505396349.259845\}]}([yshift = -6.5cm]\x2,\y2 - 0.5cm);
+		([yshift = -7.5cm]\p1) -- node [messtext]{update t1:value [295.14,\{"t":1505396349.259845\}]}([yshift = -7.5cm]\x2,\y2 - 0.5cm);
 		
 		
 		%< update t1:value [295.13,{"t":1505396350.324752,"e":0.01}]
 		\draw[mess] let %
 		\p1= (node.south), 
 		\p2= (ecs.south) in
-		([yshift = -8cm]\p1) -- node [messtext]{update t1:value [295.13,\{"t":1505396350.324752\}]}([yshift = -8cm]\x2,\y2 - 0.5cm);
+		([yshift = -8.5cm]\p1) -- node [messtext]{update t1:value [295.13,\{"t":1505396350.324752\}]}([yshift = -8.5cm]\x2,\y2 - 0.5cm);
 		
 		
 		
