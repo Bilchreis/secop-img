@@ -18,7 +18,7 @@
 %##########################
 % DEFINES
 
-\def\lllength{9.75cm}
+\def\lllength{17.75cm}
 
 
 
@@ -31,7 +31,7 @@
 	\begin{tikzpicture}
 		
 		
-		
+
 		\draw
 		node[ecs](ecs){ECS}
 		node[node,right  of =  ecs](node){SEC Node}	
@@ -50,28 +50,22 @@
 		\coordinate(llnode) at (node.south);
 		
 		
-		
+		\begin{pgfonlayer}{foreground layer}
 		\draw	
 		
 		node[active,fill = \ecsscol,below = of node, yshift = -1cm] (readstat){}
 		
 		node[active,fill = \ecsscol,below = of readstat,minimum height = 4cm, yshift = -1.5cm] (changetarget){}
 		
+		node[active,fill = \ecsscol,below = of changetarget, yshift = -2.5cm] (readstat2){}
 		
+		node[active,fill = \ecsscol,below = of readstat2, yshift = -2.5cm] (readstat3){}
 		
 		;
-		
+			\end{pgfonlayer}
+		%##### ECS
 		
 		%##### Read Status
-		\draw[mess] let \p1= (readstat.north east),
-		\p2= (client.south) in
-		(\x2,\y1 + 0.5cm) -- node [messtext] {read mf:status}(\p1);
-		
-		
-		
-		\draw[mess] let \p1= (readstat.south east), 
-		\p2= (client.south) in
-		(\p1) -- node [messtext]{reply mf:status [[100,"OK"],\{...\}]}(\x2,\y1 - 0.5cm);
 		
 		
 		\draw[mess] let %
@@ -79,18 +73,7 @@
 		\p2= (ecs.south) in
 		([yshift = -.5cm]\p1) -- node [messtext]{update mf:status [[100,"OK"],\{...\}]}([yshift = -.5cm]\x2,\y1 - 0.5cm);
 		
-		%##### change
-		
-		\draw[mess] let \p1= (changetarget.north east),
-		\p2= (client.south) in
-		(\x2,\y1 + 0.5cm) -- node [messtext] {change mf:target 12}(\p1);
-		
-		
-		
-		\draw[mess] let \p1= (changetarget.south east), 
-		\p2= (client.south) in
-		(\p1) -- node [messtext]{changed mf:target [12,\{...\}]}(\x2,\y1 - 0.5cm);
-		
+
 		%#### Side Effects
 		%< update mf:status [[300,"ramping field"],{...}]
 		\draw[mess] let %
@@ -111,27 +94,141 @@
 		
 		%#### post change updates
 		%< update mf:value [0.01293,{...}]
-			
+		
+
+		\begin{pgfonlayer}{foreground layer}
 		\draw[mess] let %
 			\p1= (node.south), 
 			\p2= (ecs.south) in
-		([yshift = -9cm]\p1) -- node [messtext]{update mf:value [0.01293,\{...\}]}([yshift = -9cm]\x2,\y2 - 0.5cm);
+		([yshift = -9.5cm]\p1) -- node [messtext]{update mf:value [0.01293,\{...\}]}([yshift = -9.5cm]\x2,\y2 - 0.5cm);
 		
 		%### reached target
 		% update mf:value [12.01194,{...}]
-		
+
 		\draw[mess] let %
-		\p1= (node.south), 
+		\p1= (readstat2.north west), 
 		\p2= (ecs.south) in
-		([yshift = -11cm]\p1) -- node [messtext]{update mf:value [0.01293,\{...\}]}([yshift = -11cm]\x2,\y2 - 0.5cm);
+		([yshift = -.6cm]\p1) -- node [messtext]{update mf:status [[300,"ramping field"],\{...\}]}([yshift = -.6cm]\x2,\y1 - 0.5cm);
 		
 		% update mf:status [[100,"at target"],{...}]		
 		
 		\draw[mess] let %
 		\p1= (node.south), 
 		\p2= (ecs.south) in
-		([yshift = -12.5cm]\p1) -- node [messtext]{update mf:status [[100,"at target"],\{...\}]	}([yshift = -12.5cm]\x2,\y2 - 0.5cm);
+		([yshift = -13.5cm]\p1) -- node [messtext]{update mf:status [[100,"at target"],\{...\}]	}([yshift = -13.5cm]\x2,\y2 - .5cm);
+		
+			\end{pgfonlayer}
+		%#### Sync Client
 
+		%##### Read Status
+		\draw[mess] let \p1= (readstat.north east),
+		\p2= (client.south) in
+		(\x2,\y1 + 0.5cm) -- node [messtext] {read mf:status}(\p1);
+		
+		
+		
+		\draw[mess] let \p1= (readstat.south east), 
+		\p2= (client.south) in
+		(\p1) -- node [messtext]{reply mf:status [[100,"OK"],\{...\}]}(\x2,\y1 - 0.5cm);
+
+		%##### change
+		
+		\draw[mess] let \p1= (changetarget.north east),
+		\p2= (client.south) in
+		(\x2,\y1 + 0.5cm) -- node [messtext] {change mf:target 12}(\p1);
+		
+		
+		
+		\draw[mess] let \p1= (changetarget.south east), 
+		\p2= (client.south) in
+		(\p1) -- node [messtext]{changed mf:target [12,\{...\}]}(\x2,\y1 - 0.5cm);
+		
+		%##### Read Status
+		\begin{pgfonlayer}{foreground layer}
+	
+
+		\draw[mess] let \p1= (readstat2.north east),
+		\p2= (client.south) in
+		(\x2,\y1 + 0.5cm) -- node [messtext] {read mf:status}(\p1);
+		
+		
+		
+		\draw[mess] let \p1= (readstat2.south east), 
+		\p2= (client.south) in
+		(\p1) -- node [messtext]{reply mf:status [[300,"ramping field"],\{...\}]}(\x2,\y1 - 0.5cm);
+		
+		
+		\draw[mess] let \p1= (readstat3.north east),
+		\p2= (client.south) in
+		(\x2,\y1 + 0.5cm) -- node [messtext] {read mf:status}(\p1);
+		
+		
+		
+		\draw[mess] let \p1= (readstat3.south east), 
+		\p2= (client.south) in
+		(\p1) -- node [messtext]{reply mf:status [[100,"at target"],\{...\}]}(\x2,\y1 - 0.5cm);
+		
+		\end{pgfonlayer}
+		%Loop
+		\coordinate (blockbeg) at (0,-9cm);
+		\coordinate (blockend) at (0,-16.5cm);
+		
+		
+		\path (client.south)+(0.3,0) node (boxeast) {}
+		(ecs.south |- {blockbeg}) + (-0.3,0)
+		node (nw) {};
+		\path (boxeast |- blockend) node (se) {};
+		
+		
+		\begin{pgfonlayer}{foreground layer}
+			\node[blockstyle] at (nw) (looptitle){loop};
+		\end{pgfonlayer}
+		
+		
+		\path (looptitle.south east) + (0,0.2) node (loopset) {}
+		(looptitle.south east) + (-0.2,0) node (loopseb) {}
+		(looptitle.north east) + (0.2,0) node (loopcomm) {};
+		
+		
+		
+		\draw[fill=black!20] (looptitle.north west) -- (looptitle.north east) --
+		(loopset.center) -- (loopseb.center) -- (looptitle.south west) -- cycle;
+		
+		\draw[fill = black!15,opacity=0.5] (se) rectangle (nw);
+		
+		% Break
+		\coordinate (breakbeg) at (0,-13cm);
+		\coordinate (breakend) at (0,-16.35cm);
+		
+		
+		\path (client.south)+(0.15,0) node (breakboxeast) {}
+		(ecs.south |- {breakbeg}) + (-0.15,0)
+		node (breaknw) {};
+		\path (breakboxeast |- breakend) node (breakse) {};
+		
+		
+		\begin{pgfonlayer}{foreground layer}
+			\node[blockstyle] at (breaknw) (breaktitle){break};
+			\node[font= \scriptsize\ttfamily,align = center,right = of breaktitle,xshift = -1cm](guard){[ Sec Node status == IDLE]};
+		\end{pgfonlayer}
+		
+		
+		\path (breaktitle.south east) + (0,0.2) node (breakset) {}
+		(breaktitle.south east) + (-0.2,0) node (breakseb) {}
+		(breaktitle.north east) + (0.2,0) node (breakcomm) {};
+		
+		
+		
+		\draw[fill=black!20] (breaktitle.north west) -- (breaktitle.north east) --
+		(breakset.center) -- (breakseb.center) -- (breaktitle.south west) -- cycle;
+		
+		\draw [fill = red!15,opacity=0.5] (breakse) rectangle (breaknw);
+		
+		%\node[blockstyle] (blocktitle) at (nw) {\blockname\theblocklevel};
+		
+		%\node[blockcommentstyle] (blockcomment) at (comm) {\blockcomm\theblocklevel};
+		
+		
 		
 		\begin{pgfonlayer}{background layer}
 
@@ -141,35 +238,28 @@
 		
 		% ECS Status Bar		
 		node[statundefined,below = of ecs.south,xshift = -.6cm,minimum height = 1cm] (ecs_undefined){\rotatebox{90}{}}
-		node[statidle,below = of ecs_undefined,minimum height = 4.2cm] (ecs_idle){\rotatebox{90}{IDLE}}
-		node[statbusy,below = of ecs_idle,minimum height = 4.5cm] (ecs_busy){\rotatebox{90}{BUSY}}
-		node[statbusy,draw = none,fill = white,below = of ecs_busy,minimum height = 1cm] (ecs_busy_dot){\rotatebox{90}{\textbf{...}}}
-		node[statbusy,below = of ecs_busy_dot,minimum height = 2.25cm] (ecs_busy_cont){}
-		node[statidle,below = of ecs_busy_cont,minimum height = 1cm] (ecs_idle_at_target){}
+		node[statidle,below = of ecs_undefined,minimum height = 8.45cm] (ecs_idle){\rotatebox{90}{IDLE}}
+		node[statbusy,below = of ecs_idle,minimum height = 4.5cm] (ecs_busy){\rotatebox{90}{BUSY}}		
+		node[statidle,below = of ecs_busy,minimum height = 3.75cm] (ecs_idle_at_target){\rotatebox{90}{IDLE}}
 		
 		% Node Status Bar
 		node[statidle,below = of node.south,xshift = 0.6cm,minimum height = 4.7cm] (node_idle){\rotatebox{90}{IDLE}}
-		node[statbusy,below = of node_idle,minimum height = 5cm] (node_busy){\rotatebox{90}{BUSY}}
-		node[statbusy,draw = none,fill = white,below = of node_busy,minimum height = 1cm] (node_busy_dot){\rotatebox{90}{\textbf{...}}}
-		node[statbusy,below = of node_busy_dot,minimum height = 1.75cm] (node_busy_cont){}
-		node[statidle,below = of node_busy_cont,minimum height = 1.5cm] (node_idle_at_target){}
+		node[statbusy,below = of node_idle,minimum height = 8.7cm] (node_busy){\rotatebox{90}{BUSY}}
+		node[statidle,below = of node_busy,minimum height = 4.3cm] (node_idle_at_target){\rotatebox{90}{IDLE}}
+		
+		
+		% Client Status Bar
+		node[statidle,below = of client.south,xshift = 0.6cm,minimum height = 4.7cm] (client_idle){\rotatebox{90}{IDLE}}
+		node[statbusy,below = of client_idle,minimum height = 10.75cm] (client_busy){\rotatebox{90}{BUSY}}
+		node[statidle,below = of client_busy,minimum height = 2.3cm] (client_idle_at_target){\rotatebox{90}{IDLE}}
 		
 		;
+		
 		
 		\end{pgfonlayer}
 
 		
-		\draw[lifeline] let 
-		\p1= (node_busy_cont.north),
-		\p2= (node.south),
-		\p3= (node_idle_at_target.south) in
-		(\x2,\y1) -- (\x2,\y3);
-		
-		\draw[lifeline] let 
-		\p1= (ecs_busy_cont.north),
-		\p2= (ecs.south),
-		\p3= (ecs_idle_at_target.south) in
-		(\x2,\y1) -- (\x2,\y3);
+
 		
 	\end{tikzpicture}
 	
