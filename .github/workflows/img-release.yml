@@ -1,0 +1,26 @@
+name: render
+
+permissions:
+  contents: write
+
+on:
+  release:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          run: |
+            apk add make
+            make zip
+  upload:
+    uses: actions/upload-artifact@v4
+    with:
+      name: images.zip
+      path: ./out.zip
+      overwrite: True
