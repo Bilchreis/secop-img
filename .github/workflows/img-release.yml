@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: install zip
-        run: apt-get install zip
+        run: sudo apt-get install zip
       - uses: actions/checkout@v4
       - uses: xu-cheng/texlive-action@v2
         with:
