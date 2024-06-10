@@ -11,17 +11,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: install zip
-        run: |
-          sudo apt-get update
       - uses: actions/checkout@v4
       - uses: xu-cheng/texlive-action@v2
         with:
           scheme: full
           run: |
             apk add make
-            apk add zip
-            make zip
+            make out
       - name: upload Artifact
         uses: actions/upload-artifact@v4
         with:
