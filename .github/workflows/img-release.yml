@@ -25,6 +25,6 @@ jobs:
       - name: upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: images.zip
+          name: images
           path: out/*.pdf
           overwrite: True
