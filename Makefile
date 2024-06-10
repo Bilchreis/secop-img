@@ -6,8 +6,8 @@ NO_SLASH := $(filter-out $(SKIP),$(NO_SLASH))
 all: $(NO_SLASH)
 
 $(NO_SLASH):
-	@cd $@; latexmk -pdf $@.tex -f -auxdir=../build/$@
-	@cp build/$@/$@.pdf $@/
+	@cd $@; latexmk -pdf $@.tex -f 
+
 
 zip: all
 	@mkdir -p out
@@ -15,7 +15,6 @@ zip: all
 	zip -r out out
 
 clean:
-	rm -rf build/
 	rm -rf out/
 	rm -rf out.zip
 
