@@ -21,26 +21,26 @@
 	\draw 
 	
 	
-	node at (0,0) [object] (client) {\texttt{SECoP-client}\\(frappy)}
-	node [object,right = of client,xshift = 2cm] (server) {\texttt{Sec} \texttt{Node}}
+	node at (0,0) [object] (client) {SECoP-client\\(frappy)}
+	node [object,right = of client,xshift = 2cm] (server) {Sec Node}
 	node [object,below= of server,yshift = -0.6cm,xshift = 0.4cm,opacity= 0.2,text opacity = 0](instrument2){blabla}
-node [object,below= of server,yshift = -0.8cm,xshift = 0.2cm,opacity=0.6,minimum width = 1.7cm](instrument2){\texttt{Hardware}\\\texttt{Component}}
+node [object,below= of server,yshift = -0.8cm,xshift = 0.2cm,opacity=0.6,minimum width = 1.7cm](instrument2){Hardware\\Component}
 node [object,below= of server,yshift = -1cm](instrument){\includegraphics[width =1.8cm ]{../img/Hum_cell.png}}
 	
 	
-	node [object,left= of client,xshift = -1cm] (ophyd){\texttt{Sec Node}\\\texttt{Ophyd.v2}}
+	node [object,left= of client,xshift = -1cm] (ophyd){Sec Node\\\scriptsize ophyd-async}
 	
-	node [object,below= of ophyd,xshift = 0.4cm,yshift= -0.3cm,opacity= 0.2,text opacity = 0] (module2){\texttt{module:a}\\\texttt{Ophyd.v2}}
-	node [object,below= of ophyd,xshift = 0.2cm,yshift= -0.5cm,opacity=0.6] (module2){\texttt{module:a}\\\texttt{Ophyd.v2}}
-	node [object,below= of ophyd,xshift =  0cm,yshift = -0.7cm] (module1){\texttt{module:a}\\\texttt{Ophyd.v2}}
+	node [object,below= of ophyd,xshift = 0.4cm,yshift= -0.3cm,opacity= 0.2,text opacity = 0] (module2){module:a\\\scriptsize ophyd-async}
+	node [object,below= of ophyd,xshift = 0.2cm,yshift= -0.5cm,opacity=0.6] (module2){module:a\\\scriptsize ophyd-async}
+	node [object,below= of ophyd,xshift =  0cm,yshift = -0.7cm] (module1){module:a\\\scriptsize ophyd-async}
 	
 	
 	
-	node [object,left= of ophyd,xshift = -3cm] (bluesky){\texttt{Bluesky}\\\texttt{run engine}} 
+	node [object,left= of ophyd,xshift = -3cm] (bluesky){Bluesky\\run engine} 
 	
-	node [object,below = of bluesky,yshift = -0.6cm,xshift = 0.4cm,text opacity = 0,opacity=.2](epics) {\texttt{EPICS-Ophyd}\\\texttt{device}}
-	node [object,below = of bluesky,yshift = -0.8cm,xshift = 0.2cm,text opacity = 0,opacity=.2](epics) {\texttt{EPICS-Ophyd}\\\texttt{device}}
-	node [object,below = of bluesky,yshift = -1cm,opacity=.6](epics) {\texttt{EPICS-Ophyd}\\\texttt{device}}
+	node [object,below = of bluesky,yshift = -0.6cm,xshift = 0.4cm,text opacity = 0,opacity=.2](epics) {EPICS-Ophyd\\device}
+	node [object,below = of bluesky,yshift = -0.8cm,xshift = 0.2cm,text opacity = 0,opacity=.2](epics) {EPICS-Ophyd\\device}
+	node [object,below = of bluesky,yshift = -1cm,opacity=.6](epics) {EPICS-Ophyd\\device}
 	
 	;
 	\draw[<->] (client) -- (server)  node[midway,above,xshift =0.1cm] {\textbf{SECoP}} ;
