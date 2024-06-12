@@ -1,0 +1,92 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{color,xcolor}
+
+\usepackage[utf8]{inputenc} 
+
+\input{../praeambel}
+
+
+\tikzset{% NodeInstance
+	base/.style    = {draw, thick, rectangle, minimum height = 3em,
+		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners = 0.3em},
+	ecs/.style = {base,fill=\ecsscol,font = \Large,inner sep = 1.5em},
+	node/.style = {
+		base,
+		font=\large,
+		fill = \nodecol,
+	},
+	hardware/.style = {
+		base,
+		fill = red!10,
+		draw = red
+	},
+	drivers/.style = {
+		base,
+		draw = black,
+		fill = black!15,
+		inner sep = 2em
+	},
+	secop/.style ={
+		arrows = {<[fill = SECoPProtocol]->},
+		line width=0.5mm,
+		color = SECoPProtocol
+	},
+	direct/.style ={
+		line width=0.5mm,
+		color = black
+	},
+	every text node part/.style={align=center}
+	
+}
+
+\begin{document}
+	
+	
+
+\pgfdeclarelayer{bbackground layer}
+\pgfdeclarelayer{background layer}
+\pgfdeclarelayer{foreground layer}
+\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
+
+\begin{tikzpicture}[
+	auto,
+	thick,
+	node distance=2cm,
+	>=triangle 45,
+	every text node part/.style={align=center}	
+	]
+	\begin{pgfonlayer}{foreground layer}
+	\draw
+	
+	
+	node[node](node){SHALL}
+	
+	node[left = of node,xshift = 1.5cm](driver){For example:\\LabVIEW}
+	
+	
+	;
+	\end{pgfonlayer}
+	\node [drivers, fit={(driver) (node) }] (driver_block){};
+	\node at (driver_block.north west)[groupCaption] {Driver Environment};
+	
+	\draw
+	node[ecs,above = of driver_block.north east,anchor =south east ](ecs){ECS/Client}
+	
+	node[hardware ,below =  of driver_block.south east,anchor = north east] (hw1) {Hardware}
+	node[hardware ,below = of driver_block.south west,anchor = north west] (hw2) {Hardware}
+
+	;
+
+	
+
+	\draw[secop](node)--(ecs); 
+	\draw[<->,direct](driver_block)--(hw1);
+	\draw[<->,direct](driver_block)--(hw2);
+	
+\end{tikzpicture}
+
+
+	
+	
+	
+\end{document}
