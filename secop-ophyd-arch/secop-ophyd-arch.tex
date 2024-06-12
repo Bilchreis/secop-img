@@ -43,7 +43,7 @@ node [object,below= of server,yshift = -1cm](instrument){\includegraphics[width 
 	node [object,below = of bluesky,yshift = -1cm,opacity=.6](epics) {EPICS-Ophyd\\device}
 	
 	;
-	\draw[<->] (client) -- (server)  node[midway,above,xshift =0.1cm] {\textbf{SECoP}} ;
+	\draw[<->] (client) -- (server)  node[midway,above,xshift =0.1cm] {\includegraphics[width=1.2cm]{../img/SECoP_Logo/SECoP_logo.eps}} ;
 	\draw[<->] (client) -- (server)  node[midway,below,xshift =0.1cm] {\textit{TCP}} ;
 	\draw[<->] (client) -- (ophyd);
 	\draw[<->] (ophyd) -- (bluesky)	node[midway,above, align=center,xshift = -0.2cm] {Bluesky};

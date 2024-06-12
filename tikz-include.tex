@@ -29,6 +29,18 @@
 }
 
 
+
+\tikzset{
+	box/.style = {
+	fill = black!5,
+	thick,
+	inner sep=1.5em,
+	rounded corners= 1em,
+	draw=black,
+	opacity=0.5	
+	}
+}
+
 \tikzset{% UML2 Activity Diagram Styles
 	caption/.style    = {node distance=1em},
 	process/.style    = {fill=black!5,draw, thick, rounded corners=0.8em, minimum height = 3em,
@@ -177,5 +189,5 @@
 
 \newcommand{\makeGroup}[6]{
 	\draw [group,fill= #6](#2-0.5,#3+1.5-#5)rectangle(#2+#4+0.5,#3+1.5);
-	\node at (#2,#3+1.5) [groupCaption] {};
+	\node at (#2,#3+1.5) [groupCaption] {#1};
 }

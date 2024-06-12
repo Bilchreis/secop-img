@@ -1,0 +1,108 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{color,xcolor}
+
+\usepackage[utf8]{inputenc} 
+
+\input{../praeambel}
+
+
+\tikzset{% NodeInstance
+	base/.style    = {draw, thick, rectangle, minimum height = 3em,
+		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners = 0.3em},
+	ecs/.style = {base,fill=\ecsscol,font = \Large,inner sep = 1.5em},
+	node/.style = {
+		base,
+		font=\large,
+		fill = \nodecol,
+	},
+	hardware/.style = {
+		base,
+		fill = red!10,
+		draw = red
+	},
+	drivers/.style = {
+		base,
+		draw = black,
+		fill = black!15,
+		inner sep = 2em
+	},
+	driver/.style = {
+		base,
+		draw = black,
+		fill = black!15,
+	},
+	secop/.style ={
+		arrows = {<[fill = SECoPProtocol]->},
+		line width=0.5mm,
+		color = SECoPProtocol
+	},
+	direct/.style ={
+		line width=0.5mm,
+		color = black
+	},
+	every text node part/.style={align=center}
+	
+}
+
+\begin{document}
+	
+	
+	
+	\pgfdeclarelayer{bbackground layer}
+	\pgfdeclarelayer{background layer}
+	\pgfdeclarelayer{foreground layer}
+	\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
+	
+	\begin{tikzpicture}[
+		auto,
+		thick,
+		node distance=2cm,
+		>=triangle 45,
+		every text node part/.style={align=center}	
+		]
+		\begin{pgfonlayer}{foreground layer}
+		\draw
+		
+		
+		node[driver] (driver){Your Driver}
+		node[driver,right = of driver,xshift = 0.3cm] (module){Other Modules}
+		
+		
+		
+		
+		;
+		\end{pgfonlayer}
+		\draw
+		node[drivers,fill = \nodecol , fit= {(module) (driver)} ] (node) {}
+		node at (node.north west)[groupCaption] {Frappy Server}
+		
+		node[ecs,above = of node.north east,anchor =south east ,yshift = 1cm](ecs){ECS/Client}
+			
+		node[hardware ,below =  of driver, yshift = -0.5cm] (hw1) {Hardware}
+		node[hardware ,below = of module,yshift = -0.5cm] (hw2) {Hardware}
+		
+		;	
+		
+
+		\draw[secop] let %
+		\p1= (ecs.south), 
+		\p2= (node.north) in
+		(\x1,\y1) -- (\x1,\y2)node[midway,right] {\includegraphics[width=1.5cm]{../img/SECoP_Logo/SECoP_logo.eps}} ; 
+		
+
+		\draw[<->,direct](module)--(driver);
+		\draw[<->,direct](module)--(hw2);
+		\draw[<->,direct](driver)--(hw1);
+		
+		\begin{pgfonlayer}{bbackground layer}
+			\node [box,fit = {(hw1)(hw1)(ecs)(node)}]	(all){};
+		\end{pgfonlayer}	
+		
+		
+	\end{tikzpicture}
+	
+	
+	
+	
+	
+\end{document}

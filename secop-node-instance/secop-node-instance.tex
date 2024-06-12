@@ -15,7 +15,7 @@
 \tikzset{% NodeInstance
 	base/.style    = {draw, thick, rectangle, minimum height = 3em,
 		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners=0.8em},
-	ecs/.style = {object,fill=\ecsscol,font = \Large,inner sep = 1.5em},
+	ecs/.style = {base,fill=\ecsscol,font = \Large,inner sep = 1.5em},
 	node/.style = {
 		base,
 		font=\large,
@@ -99,7 +99,7 @@
 
 	\draw
 	
-	node at (0,0) [ecs] (ecs) {Experimental Control System}
+	node at (0,0) [ecs] (ecs) {Experimental Control System / Client}
 	
 	node [node,below = of ecs,xshift = -4cm,yshift = -1cm] (NodeA) {Node A \nodepart[text width=\proptextw,align=left]{two}  
 		\footnotesize Properties:\\		
@@ -208,7 +208,7 @@
 
 	
 	\begin{pgfonlayer}{bbackground layer}
-	\node [block,fill = black!5,thick,inner sep=2em,fit = {(accessibles)(ecs)(NodeA)(NodeB)(mod1)(modB1)(modB2)}]	(all){};
+	\node [box,fit = {(accessibles)(ecs)(NodeA)(NodeB)(mod1)(modB1)(modB2)}]	(all){};
 	\end{pgfonlayer}	
 
 	
@@ -216,11 +216,11 @@
 	
 	
 	
-	
-	\draw[<->,secop] (ecs) -- (NodeA)  node[midway,above,xshift =0.1cm,sloped] {\textbf{SECoP}} ;
+
+	\draw[<->,secop] (ecs) -- (NodeA)  node[midway,above,xshift =0.1cm,sloped] {\includegraphics[width=1.2cm]{../img/SECoP_Logo/SECoP_logo.eps}} ;
 	%\draw[<->,secop] (ecs) -- (NodeA)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
 	
-	\draw[<->,secop] (ecs) -- (NodeB)  node[midway,above,xshift =0.1cm,sloped] {\textbf{SECoP}} ;
+	\draw[<->,secop] (ecs) -- (NodeB)  node[midway,above,xshift =0.1cm,sloped]{\includegraphics[width=1.2cm]{../img/SECoP_Logo/SECoP_logo.eps}} ;
 	\-%draw[<->,secop] (ecs) -- (NodeB)  node[midway,below,xshift =0.1cm,sloped] {\textit{TCP}} ;
 	
 	\draw[-,consists] (NodeA) --(mod1);
