@@ -32,7 +32,7 @@
 		fill = black!15,
 	},
 	secop/.style ={
-		arrows = {<[fill = SECoPProtocol]->},
+		arrows = {<->},
 		line width=0.5mm,
 		color = SECoPProtocol
 	},
@@ -64,23 +64,27 @@
 			\draw
 			
 			
-			node[driver] (driver){Your Driver}
-			node[driver,right = of driver,xshift = 0.3cm] (module){Other Modules}
+			node[minimum height = 3em,minimum width = 7em, inner sep=1em,node distance=3em] (dummy_driver){}
 			
+			node[driver,right = of dummy_driver,xshift = 0.3cm] (module){Your logic,\\metadata,\\stored data}
+			node[right = of dummy_driver,xshift = 0.3cm,yshift = -1.2cm] (dummy_module){}
+			
+			node[driver,below = of dummy_driver,yshift = 0.67cm] (general_driver) {General Driver}
 			
 			
 			
 			;
 		\end{pgfonlayer}
 		\draw
-		node[drivers,fill = \nodecol , fit= {(module) (driver)} ] (node) {}
+		node[drivers,fill = \nodecol , fit= {(module) (dummy_driver)(dummy_module)} ] (node) {}
 		node at (node.north west)[groupCaption] {Octopy}
 		
 		node[ecs,above = of node.north east,anchor =south east ,yshift = 1cm](ecs1){ECS/Client}
 		node[ecs,above = of node.north west,anchor =south west ,yshift = 1cm](ecs2){ECS/Client}
 		
-		node[hardware ,below =  of driver, yshift = -0.5cm] (hw1) {Hardware}
-		node[hardware ,below = of module,yshift = -0.5cm] (hw2) {Hardware}
+	
+		node[hardware ,below  of =  dummy_driver, yshift = -3cm] (hw1) {Hardware}
+		node[hardware ,below  of =  module,yshift = -3cm] (hw2) {Hardware}
 		
 		;	
 		
@@ -90,16 +94,29 @@
 		\p2= (node.north) in
 		(\x1,\y1) -- (\x1,\y2)node[midway,right] {\includegraphics[width=1.5cm]{../img/SECoP_Logo/SECoP_logo.eps}} ; 
 		
+		\draw[secop,color=black] let %
+		\p1= (ecs2.south), 
+		\p2= (node.north) in
+		(\x1,\y1) -- (\x1,\y2)node[midway,right] {EPICS} ; 
 		
-		\draw[<->,direct](module)--(driver);
-		\draw[<->,direct](module)--(hw2);
-		\draw[<->,direct](driver)--(hw1);
+		
+		\draw[<->,direct](module)-| (general_driver)node[midway,above] {Octopy API} ; 
+		
+		\draw[<->,direct]let %
+			\p1= (node.south), 
+			\p2= (hw2.north) in 
+		(\x2,\y1)--(\x2,\y2)node[midway,right] {Native MQT\\SECoP} ;
+		
+		\draw[<->,direct]let %
+			\p1= (node.south), 
+			\p2= (hw1.north) in 
+		(\x2,\y1)--(\x2,\y2)node[midway,right] {GPIB\\TCP/IP\\modbus} ;
 		
 		\begin{pgfonlayer}{bbackground layer}
 			\node [box,fit = {(hw1)(hw1)(ecs1)(ecs2)(node)}]	(all){};
 		\end{pgfonlayer}	
 		
-		
+			
 	\end{tikzpicture}
 	
 	
