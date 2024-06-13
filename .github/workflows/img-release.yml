@@ -21,6 +21,33 @@ jobs:
       - name: upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: images
+          name: PDFs
           path: out/*.pdf
           overwrite: True
+
+  export_svg:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:         
+      - name: Download .pdf artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: PDFs
+      - name: Export SVGs 
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install dvisvgm
+          sudo apt-get -y install texlive-base
+          mkdir svg
+          for FILE in *.pdf; do sudo dvisvgm --pdf --output=svg/${FILE%%.*}.svg $FILE; done
+
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: SVGs
+          path: svg/*
+          overwrite: True
+
+  

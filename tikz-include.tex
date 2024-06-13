@@ -33,11 +33,12 @@
 \tikzset{
 	box/.style = {
 	fill = black!5,
-	thick,
+	line width=1mm,
 	inner sep=1.5em,
 	rounded corners= 1em,
 	draw=black,
-	opacity=0.5	
+	fill opacity=0.5,
+	draw opacity = 0.7	
 	}
 }
 
@@ -51,7 +52,7 @@
 		minimum width = 0.6em, node distance=-1pt, inner sep=0,font=\relsize{-3.5}},
 	start/.style      = {fill=black,draw,circle,node distance=1em}, 
 	group/.style      = {color=black,thin,rounded corners=0.8em, rectangle,fill = black!5}, 
-	groupCaption/.style      = {above=0.2cm,thick,right=0.2cm, fill = white,draw = black,font = \scshape}, 
+	groupCaption/.style      = {above=0.2cm,very thick,right=0.2cm, fill = white,draw = black,font = \scshape}, 
 	input/.style    = {coordinate,node distance=1.5em}, 
 	output/.style   = {coordinate,node distance=1.5em}, 
 	between/.style args={#1 and #2}{ % http://tex.stackexchange.com/a/138828/15602

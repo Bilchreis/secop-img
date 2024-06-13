@@ -13,7 +13,7 @@
 
 
 \tikzset{% NodeInstance
-	base/.style    = {draw, thick, rectangle, minimum height = 3em,
+	base/.style    = {draw, very thick, rectangle, minimum height = 3em,
 		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners=0.8em},
 	ecs/.style = {base,fill=\ecsscol,font = \Large,inner sep = 1.5em},
 	node/.style = {
@@ -57,6 +57,7 @@
 		%text width =2cm
 	},
 	block/.style = {
+		very thick,
 		rounded corners=0.8em,
 		inner sep = 0.2cm,
 		draw=black
@@ -196,14 +197,14 @@
 	}
 	;
 	 \end{pgfonlayer}
-	\node [block,thick, fill= \accesscol,fit={(commands) (cmd1) (cmd2) }] (cmd_block){};
-	\node [block,thick, fill= \accesscol, fit={(params) (para1) (para2) (para3) }] (param_block){};
+	\node [block, fill= \accesscol,fit={(commands) (cmd1) (cmd2) }] (cmd_block){};
+	\node [block, fill= \accesscol, fit={(params) (para1) (para2) (para3) }] (param_block){};
 	
 	
 	
 	\begin{pgfonlayer}{background layer}
 	\draw[-,consists] (accs) -- (mod1);
-	\node [block, fill= accessiblecolor!30,thick,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {};
+	\node [block, fill= accessiblecolor!30,fit= {(cmd_block)(param_block)(accs)}] (accessibles) {};
 	\end{pgfonlayer}
 
 	
