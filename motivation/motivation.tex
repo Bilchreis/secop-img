@@ -1,4 +1,4 @@
-\documentclass[margin=10pt,convert=pdf2svg]{standalone}
+\documentclass[margin=10pt]{standalone}
 \usepackage{color,xcolor}
 
 \usepackage[utf8]{inputenc} 
@@ -12,7 +12,7 @@
 		minimum width = 3em, align=center, inner sep=1em,node distance=1em,font = \huge},
 	group/.style      = {color=black,thin,rounded corners=0.8em, line width=1pt,rectangle,fill = black!5},
 	objectinst/.style    = {fill=white,draw, thick,line width=1.5pt, rectangle, minimum height = 3em,
-		minimum width = 3em, align=center, inner sep=1em,node distance=3.8cm,font = \large},
+		minimum width = 3em, align=center, inner sep=1em,node distance=2.5cm,font = \large},
 	objectecs/.style    = {fill=white,draw, thick,line width=1.5pt, rectangle, minimum height = 3em,
 			minimum width = 3em, align=center, inner sep=1em,node distance=3.8cm,font = \large },
 	instarr/.style    = {latex-latex,line width = 2.5pt, draw = black!50 },
@@ -24,9 +24,10 @@
 	
 
 	
-	\begin{tikzpicture}[auto, line width=2pt, node distance=2cm, >=triangle 45,scale=1.7, every node/.style={scale=1.3},font = \large]
-		\draw [rounded corners=15pt,fill = black!4](-4.9,-12.6) rectangle (17.0,1.3);
-		\makeGroup{\larger Experimental Control Systems}{5.5}{-3.1}{10.5}{10.5} {blue!5}
+	\begin{tikzpicture}[auto,  node distance=2cm, >=triangle 45,font = \large]
+		\draw [box](-6.2,-17) rectangle (24.5,1.7);
+
+		\makeGroup{\Large Experimental Control Systems}{8}{-3.1}{14.5}{15} {blue!5}
 		\draw
 		
 		
@@ -42,43 +43,56 @@
 		node at (0,0)[object] (seeover){\textbf{Mobile}\\Sample Environment Equipment}	
 		
 		
+		% BLUESKY LOGO
 		node [objectecs,right = of see,yshift = -4cm,xshift = 0.2cm](blueskyhzb){\includegraphics[height=1.5cm]{../img/bluesky-logo-dark.eps}}
+		
+		% TANGO LOGO
 		node [objectecs,below = of blueskyhzb.west,anchor=west](tangodesy){\includegraphics[height=1.5cm]{../img/1200px-TANGO_controls_logo.png}}
 
+		% NICOS LOGO
+		node [objectecs, below = of tangodesy.west,anchor=west , yshift = -1.5cm](nicos){\includegraphics[height=1.5cm]{../img/nicos-text.eps}}
 
 		%node [objectecs,below = of nicosjülich.west,anchor=west](blueskydotdot){\includegraphics[height=1.5cm]{poster/bluesky-logo-dark.eps}}
 		
 		
+		%% #### Integrations #####
 		node [object, left = of blueskyhzb](sohzb){\Large SECoP-Ophyd}
 		%node [object, left = of blueskydotdot](sodotdot){\textbf{SECoP-Ophyd}}
 		node [object, left = of tangodesy](stdesy){\Large SECoP-Tango}
 
+		node [object, left = of nicos](snpsi){\Large native\\\Large Integration}
+		
+		
+		
+		
+		%### Institutes ####		
+		% HZB
+		node [objectinst,right =  of   blueskyhzb.west,anchor=west, xshift = 5cm](hzb){\includegraphics[height=1.5cm]{../img/HZB_Logo_A4_RGB.jpg}}
+		
+		% DESY
+		node [objectinst,right = of   tangodesy.west,anchor=west, xshift = 5cm](desy){\includegraphics[height=1.5cm]{../img/desy_logo_3c_web.eps}}
+		
 
+		% PSI & ESS & MLZ		
+		node [objectinst,right = of   nicos.west,anchor=west, xshift = 5.5cm,yshift = 1.8cm](psi){\includegraphics[height=1.5cm]{../img/psi.eps}}
+		node [objectinst,right = of   nicos.west,anchor=west, xshift = 5cm](ess){\includegraphics[height=1.5cm]{../img/ess.png}}
+		node [objectinst,right = of   nicos.west,anchor=west, xshift = 4.5cm,yshift = -1.8cm](jülich){\includegraphics[height=1.6cm]{../img/mlz-logo.png}}
 		
-		node [objectinst,right = of blueskyhzb,anchor=west,xshift = -2.8cm](hzb){\includegraphics[height=1.5cm]{../img/HZB_Logo_A4_RGB.jpg}}
-		node [objectinst,below = of hzb.west,anchor=west](desy){\includegraphics[height=1.5cm]{../img/desy_logo_3c_web.eps}}
-		
-		node [objectinst,below = of desy.west,anchor=west,yshift= -0.5cm](psi){\includegraphics[height=1.5cm]{../img/psi.eps}}
-		node [objectinst,below = of psi.west,anchor=west,yshift = 0.95cm,xshift = -0.4cm](ess){\includegraphics[height=1.5cm]{../img/ess.png}}
-		node [objectinst,below = of ess.west,anchor=west,yshift = 0.95cm,xshift = -0.4cm](jülich){\includegraphics[height=1.6cm]{../img/mlz-logo.png}}
-		
-		node [objectecs,left = of ess.west,anchor=west,xshift = -3.5cm ](nicospsi){\includegraphics[height=1.5cm]{../img/nicos-text.eps}}
-		
-		node [object, left = of nicospsi](snpsi){\Large native\\\Large Integration}
+
 
 		;
 		
 
-	\draw[instarr] (see.south) to  [in = 180,out = 270]  (snpsi.west);
+	\draw[instarr,color=SECoPProtocol] (see.south) to  [in = 180,out = 270]  (snpsi.west);
 
 
-	\draw[instarr] (see.south) to  [in = 180,out = 270] (stdesy.west);
+	\draw[instarr,color=SECoPProtocol] (see.south) to  [in = 180,out = 270] (stdesy.west);
 	%\draw[instarr] (see.south) to  [in = 180,out = 270]  (sodotdot.west);	
-	\draw[instarr] (see.south) to  [in = 180,out = 270]  (sohzb.west);
+	\draw[instarr,color=SECoPProtocol] (see.south) to  [in = 180,out = 270]  (sohzb.west);
 	
 	\draw[instarr,-] (sohzb) -- (blueskyhzb);
 	\draw[instarr,-] (stdesy) -- (tangodesy);
-	\draw[instarr,-] (snpsi) -- (nicospsi);
+	\draw[instarr,-] (snpsi) -- (nicos);
 
 
 

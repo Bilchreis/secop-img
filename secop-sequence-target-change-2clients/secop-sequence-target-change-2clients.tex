@@ -53,13 +53,13 @@
 		\begin{pgfonlayer}{foreground layer}
 		\draw	
 		
-		node[active,fill = \ecsscol,below = of node, yshift = -1cm] (readstat){}
+		node[active,below = of node, yshift = -1cm] (readstat){}
 		
-		node[active,fill = \ecsscol,below = of readstat,minimum height = 4cm, yshift = -1.5cm] (changetarget){}
+		node[active,below = of readstat,minimum height = 4cm, yshift = -1.5cm] (changetarget){}
 		
-		node[active,fill = \ecsscol,below = of changetarget, yshift = -2.5cm] (readstat2){}
+		node[active,below = of changetarget, yshift = -2.5cm] (readstat2){}
 		
-		node[active,fill = \ecsscol,below = of readstat2, yshift = -2.5cm] (readstat3){}
+		node[active,below = of readstat2, yshift = -2.5cm] (readstat3){}
 		
 		;
 			\end{pgfonlayer}
@@ -259,7 +259,10 @@
 		\end{pgfonlayer}
 
 		
-
+		\begin{pgfonlayer}{bbackground layer}
+			\draw [box]	(-0.5,1.5)rectangle(16.2,-\lllength-1cm);
+		\end{pgfonlayer}	
+		
 		
 	\end{tikzpicture}
 	

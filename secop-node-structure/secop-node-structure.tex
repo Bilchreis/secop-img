@@ -8,7 +8,7 @@
 
 \tikzset{% NodeInstance
 	base/.style    = {
-		thick,
+		line width = 0.13em,
 		draw = black,
 		rectangle,
 		minimum height = 3em,
@@ -125,7 +125,7 @@
 		
 
 		\begin{pgfonlayer}{bbackground layer}
-			\node [block,draw = black,fill = black!5,thick,inner sep=2em,fit = {(accs_block)(mod_properties)(node_properties)(nodes)(modules)}]	(all){};
+			\node [box,inner sep=2em,fit = {(accs_block)(mod_properties)(node_properties)(nodes)(modules)}]	(all){};
 		\end{pgfonlayer}	
 
 		

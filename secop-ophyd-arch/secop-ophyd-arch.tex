@@ -9,7 +9,10 @@
 
 \begin{document}
 	
-	
+	\pgfdeclarelayer{bbackground layer}
+	\pgfdeclarelayer{background layer}
+	\pgfdeclarelayer{foreground layer}
+	\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
 	
 \footnotesize
 	\begin{tikzpicture}[auto, thick, node distance=2cm, >=triangle 45]
@@ -59,6 +62,11 @@ node [object,below= of server,yshift = -1cm](instrument){\includegraphics[width 
 	
 	\draw[<->,draw = black!30] (bluesky)--(epics);
 	\draw[<->] (instrument) -- (server);
+	
+	
+	\begin{pgfonlayer}{bbackground layer}
+		\draw[box]	(-10.5,-5.5)rectangle (6.5,2);
+	\end{pgfonlayer}
 \end{tikzpicture}
 	
 	

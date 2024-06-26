@@ -20,6 +20,11 @@
 
 
 \begin{document}
+	
+	\pgfdeclarelayer{bbackground layer}
+	\pgfdeclarelayer{background layer}
+	\pgfdeclarelayer{foreground layer}
+	\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
 	\begin{tikzpicture}
 		
 		
@@ -41,9 +46,9 @@
 		
 		\draw	
 		
-		node[active,fill = \ecsscol,below = of node, yshift = -1cm] (idn){}
+		node[active,below = of node, yshift = -1cm] (idn){}
 		
-		node[active,fill = \ecsscol,below = of idn, yshift = -2cm] (describe){}
+		node[active,below = of idn, yshift = -2cm] (describe){}
 		
 		;
 		
@@ -68,6 +73,9 @@
 		\p2= (ecs.south) in
 		(\p1) -- node [messtext]{describing . \{"modules":\{"t1":...\}...\}}(\x2,\y1 - 0.5cm);
 		
+		\begin{pgfonlayer}{bbackground layer}
+			\draw [box]	(-0.5,0.8)rectangle(9.2,-\lllength-1cm);
+		\end{pgfonlayer}	
 		
 		
 	\end{tikzpicture}

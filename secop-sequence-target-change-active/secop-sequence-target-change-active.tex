@@ -49,9 +49,9 @@
 		
 		\draw	
 		
-		node[active,fill = \ecsscol,below = of node, yshift = -1cm] (readstat){}
+		node[active,below = of node, yshift = -1cm] (readstat){}
 		
-		node[active,fill = \ecsscol,below = of readstat,minimum height = 4cm, yshift = -1.5cm] (changetarget){}
+		node[active,below = of readstat,minimum height = 4cm, yshift = -1.5cm] (changetarget){}
 		
 		
 		
@@ -158,6 +158,10 @@
 		\p2= (ecs.south),
 		\p3= (ecs_idle_at_target.south) in
 		(\x2,\y1) -- (\x2,\y3);
+		
+		\begin{pgfonlayer}{bbackground layer}
+			\draw [box]	(-0.5,0.8)rectangle(9.2,-15);
+		\end{pgfonlayer}	
 		
 		
 	\end{tikzpicture}
