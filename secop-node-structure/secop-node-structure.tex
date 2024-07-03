@@ -94,11 +94,11 @@
 		node [property,below = of parameters] (param_properties) {Properties}
 		;
 		
-		\node [acessibles,fill = accessiblecolor!30,above = of parameters, yshift = 0.7cm,font = \large] (accs){Accessibles};
+		\node [acessibles,fill = accessiblecolor!10,above = of parameters, yshift = 0.7cm,font = \large] (accs){Accessibles};
 		
 		\begin{pgfonlayer}{background layer}
 			%\draw[-,consists] (accs) -- (mod1);
-			\node [block, fill= accessiblecolor!30,thick,inner sep=1em,fit= {(accs)(param_properties)(cmd_properties) (commands) (parameters)}] (accs_block) {};
+			\node [block, fill= accessiblecolor!10,thick,inner sep=1em,fit= {(accs)(param_properties)(cmd_properties) (commands) (parameters)}] (accs_block) {};
 		\end{pgfonlayer}
 		
 		

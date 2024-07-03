@@ -75,7 +75,45 @@
 
 
 
-\tikzset{
+\tikzset{% Implementations
+	base_impl/.style    = {draw, very thick, rectangle, minimum height = 3em,
+		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners = 0.3em},
+	ecs_impl/.style = {base_impl,fill=\ecsscol,font = \Large,inner sep = 1.5em},
+	node_impl/.style = {
+		base_impl,
+		font=\large,
+		fill = \nodecol,
+	},
+	hardware/.style = {
+		base_impl,
+		fill = black!5,
+		draw = black
+	},
+	drivers/.style = {
+		base_impl,
+		draw = black,
+		fill = black!15,
+		inner sep = 2em
+	},
+	driver/.style = {
+		base_impl,
+		draw = black,
+		fill = black!15,
+	},
+	secop_impl/.style ={
+		arrows = {<->},
+		line width=0.5mm,
+		color = SECoPProtocol
+	},
+	direct/.style ={
+		line width=0.5mm,
+		color = black
+	}%	
+}
+
+
+
+\tikzset{ % Sequence diagrams
 	base/.style    = {
 		rectangle,
 		draw,

@@ -6,43 +6,6 @@
 \input{../praeambel}
 
 
-\tikzset{% NodeInstance
-	base/.style    = {draw, very thick, rectangle, minimum height = 3em,
-		minimum width = 5em, inner sep=1em,node distance=3em,rounded corners = 0.3em},
-	ecs/.style = {base,fill=\ecsscol,font = \Large,inner sep = 1.5em},
-	node/.style = {
-		base,
-		font=\large,
-		fill = \nodecol,
-	},
-	hardware/.style = {
-		base,
-		fill = red!10,
-		draw = red
-	},
-	drivers/.style = {
-		base,
-		draw = black,
-		fill = black!15,
-		inner sep = 2em
-	},
-	driver/.style = {
-		base,
-		draw = black,
-		fill = black!15,
-	},
-	secop/.style ={
-		arrows = {<[fill = SECoPProtocol]->},
-		line width=0.5mm,
-		color = SECoPProtocol
-	},
-	direct/.style ={
-		line width=0.5mm,
-		color = black
-	},
-	every text node part/.style={align=center}
-	
-}
 
 \begin{document}
 	
@@ -76,7 +39,7 @@
 		node[drivers,fill = \nodecol , fit= {(module) (driver)} ] (node) {}
 		node at (node.north west)[groupCaption] {Frappy Server}
 		
-		node[ecs,above = of node.north east,anchor =south east ,yshift = 1cm](ecs){ECS/Client}
+		node[ecs_impl,above = of node.north east,anchor =south east ,yshift = 1cm](ecs){ECS/Client}
 			
 		node[hardware ,below =  of driver, yshift = -0.5cm] (hw1) {Hardware}
 		node[hardware ,below = of module,yshift = -0.5cm] (hw2) {Hardware}
@@ -84,7 +47,7 @@
 		;	
 		
 
-		\draw[secop] let %
+		\draw[secop_impl] let %
 		\p1= (ecs.south), 
 		\p2= (node.north) in
 		(\x1,\y1) -- (\x1,\y2)node[midway,right] {\includegraphics[width=1.5cm]{../img/SECoP_Logo/SECoP_logo.eps}} ; 
