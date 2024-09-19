@@ -11,7 +11,7 @@
 		minimum height = 3em,
 		minimum width = 8em,
 		inner sep=1em,
-		node distance=1cm,
+		node distance=0.8cm and 0.1cm,
 		rounded corners=0.8em,
 		align = center
 	},
@@ -88,7 +88,7 @@
 		node [property,left = of modules] (more_sigs) {\dots}
 		
 
-		node [property,below = of node_properties,xshift = -1.75cm](sub_sig){Signal}
+		node [property,below = of node_properties,xshift = -1.5cm](sub_sig){Signal}
 		node [node,right= of sub_sig](sub_dev){\dots}
 		
 		
@@ -103,12 +103,12 @@
 
 		
 		
-		\draw[-,consists] (nodes) -- ++(0,-1.25) -| (modules);
-		\draw[-,consists] (nodes) -- ++(0,-1.25) -| (node_properties);
-		\draw[-,consists] (nodes) -- ++(0,-1.25) -| (more_sigs);
+		\draw[-,consists] (nodes) -- ++(0,-1) -| (modules);
+		\draw[-,consists] (nodes) -- ++(0,-1) -| (node_properties);
+		\draw[-,consists] (nodes) -- ++(0,-1) -| (more_sigs);
 		
-		\draw[-,consists] (node_properties) -- ++(0,-1.25) -| (sub_sig);
-		\draw[-,consists] (node_properties) -- ++(0,-1.25) -| (sub_dev);
+		\draw[-,consists] (node_properties) -- ++(0,-1) -| (sub_sig);
+		\draw[-,consists] (node_properties) -- ++(0,-1) -| (sub_dev);
 		
 
 		
