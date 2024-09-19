@@ -24,7 +24,7 @@
 		minimum width = 3em, 
 		align=center, 
 		inner sep=0.5em,
-		node distance=4em and 3.5em,
+		node distance=4.2em and 4em,
 		font = \scriptsize
 	},
 	annotation/.style ={		
@@ -41,6 +41,7 @@
 		opacity = 0.5
 	},
 	class/.style= {
+		draw= black!30,
 		rounded corners=0.2cm,
 		inner sep = 0.7em
 	},
@@ -76,6 +77,8 @@
 	node[archobject,below = of bluesky, yshift = -0.5cm](dosing_ophy){Gas Dosing\\\tiny Ophyd Device}
 	node[archobject,right = of dosing_ophy](reactor_ophy){Reactor Cell\\\tiny Ophyd Device}
 	node[archobject,right = of reactor_ophy](beamline_ophy){Beamline\\\tiny Ophyd Devices}
+	
+	
 	node[archobject,right = of reactor_ophy,xshift = 0.1cm,yshift= 0.1cm](beamline_ophy2){Beamline\\\tiny Ophyd Devices}
 	node[archobject,right = of reactor_ophy,xshift = 0.2cm,yshift= 0.2cm](beamline_ophy3){Beamline\\\tiny Ophyd Devices}
 	
@@ -112,13 +115,13 @@
 	
 	\begin{pgfonlayer}{background layer}
 		% Sample Environment
-		\node[class,fill = green!10,fit = {(spectr) (reactor_cell) (temp_contr)}](sample_env){};
+		\node[class,fill = green!5,fit = {(spectr) (reactor_cell) (temp_contr)}](sample_env){};
 		
 		% Beamline
-		\node[class,fill = red!10,fit = {(epics) (eiger) }](beam){};
+		\node[class,fill = red!5,fit = {(epics) (eiger) }](beam){};
 		
 		
-		\node[class,fill = blue!10,fit = {(bluesky) (dosing_ophy) (reactor_ophy) (beamline_ophy)(plan)(doc)(beamline_ophy3)}](bluesky_env){};
+		\node[class,fill = blue!5,fit = {(bluesky) (dosing_ophy) (reactor_ophy) (beamline_ophy)(plan)(doc)(beamline_ophy3)}](bluesky_env){};
 		% Bluesky environment
 		
 
@@ -158,7 +161,7 @@
 	
 	\draw[hline] ( [yshift=0.3cm] hard.north west) -- ([yshift=0.3cm,xshift = 12.7cm] hard.north west);
 	
-	\draw[hline] ([xshift = -0.2cm,yshift= 0.5cm]ecs.north east) -- ([xshift = -0.3cm]hard.south east);
+	\draw[hline] ([xshift = -0.2cm,yshift= 0.5cm]ecs.north east) -- ([xshift = -0.2cm,yshift = -0.2cm]hard.south east);
 	
 	\draw[] (reactor_cell) -- (temp_contr);
 	\draw[] (massflow) -- (gas_dosing);			
