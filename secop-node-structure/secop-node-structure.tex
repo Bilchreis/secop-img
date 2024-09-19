@@ -8,8 +8,6 @@
 
 \tikzset{% NodeInstance
 	base/.style    = {
-		line width = 0.13em,
-		draw = black,
 		rectangle,
 		minimum height = 3em,
 		minimum width = 8em,
@@ -83,22 +81,22 @@
 		node [property,right = of modules] (node_properties) {Properties}
 		
 		
-		node [command, below  = of modules, yshift = -1.4cm, xshift = -1.2cm] (commands){Commands}
+		node [command, below  = of modules, yshift = -1.4cm, xshift = -1.2cm,fill = \devcol] (commands){Commands}
 		
 		node [command, left  = of commands] (parameters){Parameters}
 		
 		
 		
-		node [property,below = of commands] (cmd_properties) {Properties}
+		node [property,below = of commands,fill = black!5] (cmd_properties) {Properties}
 		
-		node [property,below = of parameters] (param_properties) {Properties}
+		node [property,below = of parameters,fill = black!5] (param_properties) {Properties}
 		;
 		
-		\node [acessibles,fill = accessiblecolor!10,above = of parameters, yshift = 0.7cm,font = \large] (accs){Accessibles};
+		\node [acessibles,fill = black!15,above = of parameters, yshift = 0.7cm,font = \large] (accs){Accessibles};
 		
 		\begin{pgfonlayer}{background layer}
 			%\draw[-,consists] (accs) -- (mod1);
-			\node [block, fill= accessiblecolor!10,thick,inner sep=1em,fit= {(accs)(param_properties)(cmd_properties) (commands) (parameters)}] (accs_block) {};
+			\node [block, fill= black!15,thick,inner sep=1em,fit= {(accs)(param_properties)(cmd_properties) (commands) (parameters)}] (accs_block) {};
 		\end{pgfonlayer}
 		
 		
