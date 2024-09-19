@@ -14,7 +14,8 @@
 		inner sep=1em,
 		node distance=0.9cm and 0.1cm ,
 		rounded corners=0.8em,
-		align = center
+		align = center,
+		font = \Large
 	},
 	ecs/.style = {
 		object,
@@ -92,7 +93,7 @@
 		node [property,below = of parameters,fill = black!5] (param_properties) {Properties}
 		;
 		
-		\node [acessibles,fill = black!15,above = of parameters, yshift = 0.7cm,font = \large] (accs){Accessibles};
+		\node [acessibles,fill = black!15,above = of parameters, yshift = 0.7cm,font = \Large] (accs){Accessibles};
 		
 		\begin{pgfonlayer}{background layer}
 			%\draw[-,consists] (accs) -- (mod1);
