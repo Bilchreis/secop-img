@@ -74,7 +74,7 @@
 	node[archobject](bluesky){Bluesky Run Engine}
 	
 	% Ophyd
-	node[archobject,below = of bluesky, yshift = -0.5cm](dosing_ophy){Gas Dosing\\\tiny Ophyd Device}
+	node[archobject,below = of bluesky, yshift = -0.0cm](dosing_ophy){Gas Dosing\\\tiny Ophyd Device}
 	node[archobject,right = of dosing_ophy](reactor_ophy){Reactor Cell\\\tiny Ophyd Device}
 	node[archobject,right = of reactor_ophy](beamline_ophy){Beamline\\\tiny Ophyd Devices}
 	
@@ -157,9 +157,9 @@
 	-| ([xshift=-\cornerlength]doc.north east);
 	
 	
-	\draw[hline] ([yshift=0.3cm] field.north west) -- ([yshift=0.3cm,xshift = 12.7cm] field.north west);
+	\draw[hline] ([yshift=0.3cm] field.north west) -- ([yshift=0.3cm,xshift = 13.5cm] field.north west);
 	
-	\draw[hline] ( [yshift=0.3cm] hard.north west) -- ([yshift=0.3cm,xshift = 12.7cm] hard.north west);
+	\draw[hline] ( [yshift=0.3cm] hard.north west) -- ([yshift=0.3cm,xshift = 13.5cm] hard.north west);
 	
 	\draw[hline] ([xshift = -0.2cm,yshift= 0.5cm]ecs.north east) -- ([xshift = -0.2cm,yshift = -0.2cm]hard.south east);
 	
