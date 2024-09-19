@@ -1,0 +1,193 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{color,xcolor}
+
+\usepackage[utf8]{inputenc} 
+
+\input{../praeambel}
+
+\newcommand{\propsize}{\footnotesize}
+\newcommand{\proptextw}{2.2cm}
+\def\cornerlength{0.2cm}
+\setlist[itemize]{leftmargin=*,noitemsep,topsep=0.1em,font=\Large}
+
+
+
+\tikzset{
+	objecttalk/.style    = {object,rounded corners,inner sep = 0.5 em,  node distance = 4cm},
+	group/.style      = {color=black,thin,rounded corners=0.8em, line width=1pt,rectangle,fill = black!5}, 
+	instarr/.style    = {latex-latex,line width = 2.5pt, draw = black!50 },
+	instarrblue/.style    = {instarr,line width=4pt,draw = blue },
+	archobject/.style    = {
+		fill=black!5,draw,
+		thick, rectangle, 
+		minimum height = 1em,
+		minimum width = 3em, 
+		align=center, 
+		inner sep=0.5em,
+		node distance=4em and 3.5em,
+		font = \scriptsize
+	},
+	annotation/.style ={		
+		align = left,
+		minimum height = 1em,
+		minimum width = 10em, 
+		xshift = -1.5cm,
+		text width=8em
+	},
+	hline/.style ={
+		yshift = 1.5cm,
+		color = black!50,
+		thick,
+		opacity = 0.5
+	},
+	class/.style= {
+		rounded corners=0.2cm,
+		inner sep = 0.7em
+	},
+	docborder/.style= {
+		draw,
+		thick
+	},
+	plan/.style= {
+		text width = 1.5cm,
+		minimum height = 1.5cm,
+		font = \scriptsize,
+		align =  left
+	}				
+}
+
+\begin{document}
+	
+	
+	
+\footnotesize
+\pgfdeclarelayer{bbackground layer}
+\pgfdeclarelayer{background layer}
+\pgfdeclarelayer{foreground layer}
+\pgfsetlayers{bbackground layer,background layer,main,foreground layer}
+
+	\begin{tikzpicture}[]
+	
+	
+	\draw
+	node[archobject](bluesky){Bluesky Run Engine}
+	
+	% Ophyd
+	node[archobject,below = of bluesky, yshift = -0.5cm](dosing_ophy){Gas Dosing\\\tiny Ophyd Device}
+	node[archobject,right = of dosing_ophy](reactor_ophy){Reactor Cell\\\tiny Ophyd Device}
+	node[archobject,right = of reactor_ophy](beamline_ophy){Beamline\\\tiny Ophyd Devices}
+	node[archobject,right = of reactor_ophy,xshift = 0.1cm,yshift= 0.1cm](beamline_ophy2){Beamline\\\tiny Ophyd Devices}
+	node[archobject,right = of reactor_ophy,xshift = 0.2cm,yshift= 0.2cm](beamline_ophy3){Beamline\\\tiny Ophyd Devices}
+	
+	% Field
+	node[archobject,below  of = dosing_ophy, yshift = -0.8cm](gas_dosing){Gas Dosing\\\tiny SHALL-LabVIEW}
+	node[archobject,below  of =  reactor_ophy, yshift = -0.8cm](reactor_cell){Reactor Cell\\\tiny SHALL-LabVIEW}
+	node[archobject,left   = of  gas_dosing, opacity = 0.5](gas_ana){Gas Analysis\\\tiny SEC Node}
+	
+	node [annotation,left of = gas_ana,xshift = -0.3cm] (field) {Field\\ Layer}	
+	
+	node[archobject,below  of = beamline_ophy,align = center, yshift = -0.8cm](epics){EPICS\\IOCs}	
+	
+	
+	% Hardware
+	node[archobject,below  of =gas_ana] (spectr) {Mass \\Spectrometer}
+	
+	node [annotation,left of = spectr,xshift = -0.3cm] (hard) {Hardware\\Components}	
+	
+	node[archobject,below of = gas_dosing](massflow){ 3x Massflow Contr.\\ 1x Pressure Contr.}
+	node[archobject,below  of = reactor_cell](temp_contr){Temperature Contr.\\
+		Temperarture Sensor}		
+	
+	node[archobject,below  of =  epics](eiger){Eiger Detector\\...}
+	
+	node[plan,left  = of  bluesky](plan){Plan:\\Catalysis\\ Experiment}		
+	
+	
+	node[plan,right  = of  bluesky](doc){Bluesky\\Documents}	
+	
+	node [annotation,left of = plan,xshift = -0.cm] (ecs) {Experimental Control System}
+	
+	
+	;
+	
+	\begin{pgfonlayer}{background layer}
+		% Sample Environment
+		\node[class,fill = yellow!10,fit = {(spectr) (reactor_cell) (temp_contr)}](sample_env){};
+		
+		% Beamline
+		\node[class,fill = red!10,fit = {(epics) (eiger) }](beam){};
+		
+		
+		\node[class,fill = blue!10,fit = {(bluesky) (dosing_ophy) (reactor_ophy) (beamline_ophy)(plan)(doc)(beamline_ophy3)}](bluesky_env){};
+		% Bluesky environment
+		
+
+	\end{pgfonlayer}
+
+		\begin{pgfonlayer}{bbackground layer}
+		\node [box,inner sep=2em,fit = {(sample_env)(beam)(bluesky_env)(ecs)}]	(all){};
+\end{pgfonlayer}	
+
+	
+	
+	
+	\draw [docborder]
+	(plan.north west)
+	-- ([xshift=-\cornerlength]plan.north east)
+	-- ([yshift=-\cornerlength]plan.north east)
+	-- (plan.south east)
+	-- (plan.south west)
+	-- cycle;
+	\draw [docborder]
+	([yshift=-\cornerlength]plan.north east)
+	-| ([xshift=-\cornerlength]plan.north east);
+	
+	\draw [docborder]
+	(doc.north west)
+	-- ([xshift=-\cornerlength]doc.north east)
+	-- ([yshift=-\cornerlength]doc.north east)
+	-- (doc.south east)
+	-- (doc.south west)
+	-- cycle;
+	\draw [docborder]
+	([yshift=-\cornerlength]doc.north east)
+	-| ([xshift=-\cornerlength]doc.north east);
+	
+	
+	\draw[hline] ([yshift=0.3cm] field.north west) -- ([yshift=0.3cm,xshift = 12.7cm] field.north west);
+	
+	\draw[hline] ( [yshift=0.3cm] hard.north west) -- ([yshift=0.3cm,xshift = 12.7cm] hard.north west);
+	
+	\draw[hline] ([xshift = -0.2cm,yshift= 0.5cm]ecs.north east) -- ([xshift = -0.3cm]hard.south east);
+	
+	\draw[] (reactor_cell) -- (temp_contr);
+	\draw[] (massflow) -- (gas_dosing);			
+	\draw[] (eiger) -- (epics);
+	\draw[]	(reactor_cell) -- (reactor_ophy)node [midway, above, sloped,font =\small] (TextNode) {SECoP};
+	\draw[]	(gas_dosing) -- (dosing_ophy)node [midway, above, sloped,font =\small] (TextNode) {SECoP};
+	
+	\draw[] (epics) -- (beamline_ophy);
+	
+	\draw[] (dosing_ophy) -- (bluesky);
+	
+	
+		\begin{pgfonlayer}{background layer}
+	\draw[] (beamline_ophy.north)|-([yshift = 0.5cm] beamline_ophy.north) -| (bluesky);
+		
+		
+	\end{pgfonlayer}
+	
+	
+
+	\draw[] (reactor_ophy.north)|-([yshift = 0.5cm] reactor_ophy.north) -| (bluesky);
+	\draw[-Stealth,thick] (plan) -- (bluesky);
+	\draw[-Stealth,thick] (bluesky) -- (doc);
+	
+\end{tikzpicture}
+
+
+
+	
+	
+	
+\end{document}
