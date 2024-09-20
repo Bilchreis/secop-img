@@ -27,6 +27,12 @@
 		node distance=4.2em and 4em,
 		font = \scriptsize
 	},
+	sim/.style    = {
+		archobject,
+		fill = orange!40,
+		draw = orange!60,
+		text = orange!40
+	},
 	annotation/.style ={		
 		align = left,
 		minimum height = 1em,
@@ -74,23 +80,40 @@
 	node[archobject](bluesky){Bluesky Run Engine}
 	
 	% Ophyd
-	node[archobject,below = of bluesky, yshift = -0.0cm](dosing_ophy){Gas Dosing\\\tiny Ophyd Device}
+	node[archobject,below = of bluesky, yshift = -0.0cm](dosing_ophy){Gas Dosing\\\tiny Ophyd Device}	
 	node[archobject,right = of dosing_ophy](reactor_ophy){Reactor Cell\\\tiny Ophyd Device}
-	node[archobject,right = of reactor_ophy](beamline_ophy){Beamline\\\tiny Ophyd Devices}
+
+
 	
 	
-	node[archobject,right = of reactor_ophy,xshift = 0.1cm,yshift= 0.1cm](beamline_ophy2){Beamline\\\tiny Ophyd Devices}
-	node[archobject,right = of reactor_ophy,xshift = 0.2cm,yshift= 0.2cm](beamline_ophy3){Beamline\\\tiny Ophyd Devices}
-	
+
 	% Field
 	node[archobject,below  of = dosing_ophy, yshift = -0.8cm](gas_dosing){Gas Dosing\\\tiny SHALL-LabVIEW}
 	node[archobject,below  of =  reactor_ophy, yshift = -0.8cm](reactor_cell){Reactor Cell\\\tiny SHALL-LabVIEW}
 	node[archobject,left   = of  gas_dosing, opacity = 0.5](gas_ana){Gas Analysis\\\tiny SEC Node}
 	
+	
+	node[archobject,above  = of gas_ana,yshift = 0.013cm, opacity = 0.5](ana_ophy){Gas Analysis\\\tiny Ophyd Device}
+	
 	node [annotation,left of = gas_ana,xshift = -0.3cm] (field) {Field\\ Layer}	
 	
-	node[archobject,below  of = beamline_ophy,align = center, yshift = -0.8cm](epics){EPICS\\IOCs}	
+
+	node [
+		draw = orange!70,
+		left of = gas_ana,
+		xshift = -0.3cm,
+		yshift = 1.3cm,
+		font = \scriptsize,
+		fill = orange!40,
+		rounded corners=0.2cm,
+		minimum height = 2em,
+		minimum width= 8.5em,
+		xshift = -1.7cm,
+		text width=8em,
+		inner sep = 0.4em
+		] (sim_nodes){Containerized Simulated Hardware} 
 	
+
 	
 	% Hardware
 	node[archobject,below  of =gas_ana] (spectr) {Mass \\Spectrometer}
@@ -101,7 +124,7 @@
 	node[archobject,below  of = reactor_cell](temp_contr){Temperature Contr.\\
 		Temperarture Sensor}		
 	
-	node[archobject,below  of =  epics](eiger){Eiger Detector\\...}
+
 	
 	node[plan,left  = of  bluesky](plan){Plan:\\Catalysis\\ Experiment}		
 	
@@ -117,19 +140,26 @@
 		% Sample Environment
 		\node[class,fill = green!5,fit = {(spectr) (reactor_cell) (temp_contr)}](sample_env){};
 		
-		% Beamline
-		\node[class,fill = red!5,fit = {(epics) (eiger) }](beam){};
+
 		
-		
-		\node[class,fill = blue!5,fit = {(bluesky) (dosing_ophy) (reactor_ophy) (beamline_ophy)(plan)(doc)(beamline_ophy3)}](bluesky_env){};
 		% Bluesky environment
+		\node[class,fill = blue!5,fit = {(bluesky) (dosing_ophy) (reactor_ophy) (plan)(doc)}](bluesky_env){};
+	
+		
+		% Sim Devices
+		\node[sim,below  of = dosing_ophy, yshift = -0.7cm,xshift = 0.1cm](gas_dosing_sim){Gas Dosing\\\tiny SHALL-LabVIEW};
+		\node[sim,below  of =  reactor_ophy, yshift = -0.7cm,xshift=0.1cm](reactor_cell_sim){Reactor Cell\\\tiny SHALL-LabVIEW};
+		
+		\node[sim,left   = of  gas_dosing,xshift = 0.1cm,yshift = 0.1cm](gas_ana_sim){Gas Analysis\\\tiny SEC Node};
+		
+		
 		
 
 	\end{pgfonlayer}
 
-		\begin{pgfonlayer}{bbackground layer}
-		\node [box,inner sep=2em,line width=0.5mm,fit = {(sample_env)(beam)(bluesky_env)(ecs)}]	(all){};
-\end{pgfonlayer}	
+	\begin{pgfonlayer}{bbackground layer}
+		\node [box,inner sep=2em,line width=0.5mm,fit = {(sample_env)(bluesky_env)(ecs)}]	(all){};
+	\end{pgfonlayer}	
 
 	
 	
@@ -157,34 +187,48 @@
 	-| ([xshift=-\cornerlength]doc.north east);
 	
 	
-	\draw[hline] ([yshift=0.3cm] field.north west) -- ([yshift=0.3cm,xshift = 13.5cm] field.north west);
+	\draw[hline] ([yshift=0.3cm] field.north west) -- ([yshift=0.3cm,xshift = 11.5cm] field.north west);
 	
-	\draw[hline] ( [yshift=0.3cm] hard.north west) -- ([yshift=0.3cm,xshift = 13.5cm] hard.north west);
+	\draw[hline] ( [yshift=0.3cm] hard.north west) -- ([yshift=0.3cm,xshift = 11.5cm] hard.north west);
 	
 	\draw[hline] ([xshift = -0.2cm,yshift= 0.5cm]ecs.north east) -- ([xshift = -0.2cm,yshift = -0.2cm]hard.south east);
 	
+	
+	
 	\draw[] (reactor_cell) -- (temp_contr);
 	\draw[] (massflow) -- (gas_dosing);			
-	\draw[] (eiger) -- (epics);
+	\draw[opacity = 0.5] (spectr) -- (gas_ana);		
+
 	\draw[]	(reactor_cell) -- (reactor_ophy)node [midway, above, sloped,font =\small] (TextNode) {SECoP};
 	\draw[]	(gas_dosing) -- (dosing_ophy)node [midway, above, sloped,font =\small] (TextNode) {SECoP};
+	\draw[ opacity = 0.5]	(gas_ana) -- (ana_ophy)node [midway, above, sloped,font =\small, opacity = 0.5] (TextNode) {SECoP};
 	
-	\draw[] (epics) -- (beamline_ophy);
-	
+
 	\draw[] (dosing_ophy) -- (bluesky);
 	
 	
-		\begin{pgfonlayer}{background layer}
-	\draw[] (beamline_ophy.north)|-([yshift = 0.5cm] beamline_ophy.north) -| (bluesky);
-		
-		
-	\end{pgfonlayer}
+
 	
 	
 
 	\draw[] (reactor_ophy.north)|-([yshift = 0.5cm] reactor_ophy.north) -| (bluesky);
+	\draw[opacity = 0.5] (ana_ophy.north)|-([yshift = 0.5cm] ana_ophy.north) -| (bluesky);
 	\draw[-Stealth,thick] (plan) -- (bluesky);
 	\draw[-Stealth,thick] (bluesky) -- (doc);
+	
+	
+	\begin{pgfonlayer}{background layer}
+
+		\draw [orange!60] (sim_nodes) to [out=0,in=120] (gas_ana_sim); 
+		\draw [orange!60] (sim_nodes) to [out=0,in=160] (gas_dosing_sim);
+		\draw [orange!60] (sim_nodes) to [out=0,in=165] (reactor_cell_sim);
+		
+		
+		
+	\end{pgfonlayer}
+	
+
+	
 	
 \end{tikzpicture}
 
